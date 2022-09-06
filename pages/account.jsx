@@ -4,12 +4,7 @@ import { useEffect } from "react";
 
 const account = () => {
 
-    const session = supabase.auth.session();
     const router = useRouter();
-
-    if(session == null){
-        useEffect(()=>{router.push('/login')}, []);
-    }
 
     return(<div>
             <Navi/>
@@ -17,7 +12,6 @@ const account = () => {
             <h1></h1>
 
             <button onClick={()=> {
-                supabase.auth.signOut();
                 router.push('./')
             }}>
                 Sign out
