@@ -12,11 +12,11 @@ const login = () => {
 
     const router = useRouter();
     const auth = getAuth(app);
-    onAuthStateChanged(auth, function(user) {
-        if (!user) {
-            router.push('/account')
-        } 
-    });
+    // onAuthStateChanged(auth, function(user) {
+    //     if (!user) {
+    //         router.push('/account')
+    //     } 
+    // });
     // firebase.initializeApp(config);
     // var db = firebase.firestore();
     
