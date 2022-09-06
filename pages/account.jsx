@@ -1,4 +1,3 @@
-import { supabase } from "../utils/supabaseClient";
 import Navi from "../components/Navi";
 import   {useRouter} from 'next/router';
 import { useEffect } from "react";
