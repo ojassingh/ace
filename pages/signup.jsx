@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import { database } from '../firebase/config';
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification} from "firebase/auth";
 import { app } from '../firebase/config';
+import { doc, setDoc } from 'firebase/firestore';
 
 
 const signup = () => {
@@ -26,18 +27,18 @@ const signup = () => {
 
       const auth = getAuth(app);
 
-      createUserWithEmailAndPassword(auth, email, password, studentNumber, name)
+      createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // Signed in 
             const user = userCredential.user;
-            sendEmailVerification(user)
-            alert("Check email for verification!")
-            database.collection("usersCollection")
-            .add({
-              uid: userCredential.user.uid, 
+            // sendEmailVerification(user)
+            // alert("Check email for verification!")
+            const docData = {
+              // uid: userCredential.user.uid, 
               displayName: name, 
               studentNumber: studentNumber
-            })
+            }
+            setDoc(doc(database, "usersCollection", user.uid), docData);
           // ...
         })
         .catch((error) => {
