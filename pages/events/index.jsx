@@ -1,28 +1,34 @@
 import Navi from "../../components/Navi";
 import styles from '../../styles/Events.module.scss';
-import { getDocs, collection} from "firebase/firestore";
-import EventCard from "../../components/events/EventCard";
-import { useEffect } from "react";
+import { collection, doc, setDoc, getDocs, getDoc, DocumentReference} from "firebase/firestore";
+import { database } from "../../firebase/config";
+import { Firestore } from "firebase/firestore";
 
 const events = () => {
-    // const dbInstance = '';
-    // const getEvents = () => {
-    //     getDocs(dbInstance)
-    //         .then((data) => {
-    //         console.log(data);
-    //         })
-    // }
 
 
-    useEffect(()=>{
-        getEvents();
-    }, [])
-
-    
     return(<div className={styles.container}>
         <Navi/>
         <h1>Events</h1>
+        <ul>
+            <li></li>
+        </ul>
     </div>);
 }
 
 export default events;
+
+// export async function getStaticPaths() {
+
+//     const querySnapshot = await getDocs(collection(database, "events"))
+    
+
+//     return {
+//       fallback: false,
+//       paths: [
+//         {params:{
+//             meetupI: "ev"
+//         }}
+//       ],
+//     }
+//   }

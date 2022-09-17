@@ -6,6 +6,7 @@ import Navi from '../components/Navi';
 import { Fragment } from 'react';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { database } from '../firebase/config';
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification} from "firebase/auth";
 import { app } from '../firebase/config';
 
@@ -21,16 +22,22 @@ const signup = () => {
 
 
 
-    const signInHandler = (email, password) =>{
+    const signInHandler = (email, password, studentNumber, name) =>{
 
       const auth = getAuth(app);
 
-      createUserWithEmailAndPassword(auth, email, password)
+      createUserWithEmailAndPassword(auth, email, password, name)
         .then((userCredential) => {
           // Signed in 
-          const user = userCredential.user;
+            const user = userCredential.user;
             sendEmailVerification(user)
             alert("Check email for verification!")
+            database.collection("usersCollection")
+            .add({
+              uid: userCredential.user.uid, 
+              displayName: name, 
+              studentNumber: studentNumber,
+            })
           // ...
         })
         .catch((error) => {
@@ -82,7 +89,7 @@ const signup = () => {
               whileHover={{ translateY: -10}}
               onClick={(e) => {
               e.preventDefault()
-              signInHandler(email, password)
+              signInHandler(email, password, studentNumber, name)
             }} 
         > 
                 Create an account

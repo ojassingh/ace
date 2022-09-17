@@ -3,7 +3,7 @@ import { FormControl, FormLabel, Input, FormHelperText } from '@chakra-ui/react'
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Navi from '../components/Navi';
-import { useState, Fragment} from 'react';
+import { useState, Fragment, useEffect} from 'react';
 import { useRouter } from 'next/router';
 import {signInWithEmailAndPassword} from "firebase/auth";
 import { onAuthStateChanged, getAuth} from 'firebase/auth';
@@ -12,13 +12,20 @@ const login = () => {
 
     const router = useRouter();
     const auth = getAuth(app);
-    // onAuthStateChanged(auth, function(user) {
-    //     if (!user) {
-    //         router.push('/account')
-    //     } 
-    // });
-    // firebase.initializeApp(config);
-    // var db = firebase.firestore();
+
+    useEffect(()=>{
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is signed in, see docs for a list of available properties
+                // https://firebase.google.com/docs/reference/js/firebase.User
+                const uid = user.uid;
+                console.log('User is already signed in, so redirecting.');
+                router.push('/account');
+            } else {
+                console.log('no on is logged in')
+            }
+        });
+    }, [])
     
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -37,7 +44,7 @@ const login = () => {
             const errorMessage = error.message;
             alert(errorCode || errorMessage)
         });
-    }
+    } 
 
 
     return(
