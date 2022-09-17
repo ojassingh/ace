@@ -26,7 +26,7 @@ const signup = () => {
 
       const auth = getAuth(app);
 
-      createUserWithEmailAndPassword(auth, email, password, name)
+      createUserWithEmailAndPassword(auth, email, password, studentNumber, name)
         .then((userCredential) => {
           // Signed in 
             const user = userCredential.user;
@@ -36,7 +36,7 @@ const signup = () => {
             .add({
               uid: userCredential.user.uid, 
               displayName: name, 
-              studentNumber: studentNumber,
+              studentNumber: studentNumber
             })
           // ...
         })
