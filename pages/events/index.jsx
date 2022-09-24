@@ -7,6 +7,7 @@ import { getAuth, onAuthStateChanged} from "@firebase/auth";
 import { app } from "../../firebase/config";
 import { motion } from "framer-motion";
 import EventCard from "../../components/eventCard";
+import { Suspense } from "react";
 
 // const DynamicEvent = dynamic(() => import('../components/EventCard.jsx'), {
 //     suspense: true,
