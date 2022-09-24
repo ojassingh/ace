@@ -2,6 +2,8 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
+
+
 const EventCard = (props) => {
 
       const [date, setDate] = useState('');
@@ -31,5 +33,6 @@ const EventCard = (props) => {
         </motion.button>
       </div>);
 }
+
 
 export default EventCard;

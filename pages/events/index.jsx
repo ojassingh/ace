@@ -1,5 +1,4 @@
 import Navi from "../../components/Navi";
-import EventCard from "../../components/EventCard";
 import styles from '../../styles/Events.module.scss';
 import { collection, getDocs} from "firebase/firestore";
 import { database } from "../../firebase/config";
@@ -7,6 +6,11 @@ import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged} from "@firebase/auth";
 import { app } from "../../firebase/config";
 import { motion } from "framer-motion";
+
+const DynamicEvent = dynamic(() => import('../components/EventCard.jsx'), {
+    suspense: true,
+  })
+
 
 const events = ({events}) => {
 
@@ -48,14 +52,13 @@ const events = ({events}) => {
             {
                 eventList.map((event)=>{
                     return(<div key={event.id}>
-                        <EventCard 
+                    <Suspense fallback={`Loading...`}>
+                        <DynamicEvent 
                             id={event.id}
                             name={event.name}
                             date={event.date}
-                            price={event.price}
-                            payment={event.payment}
-                            description={event.description}
                         />
+                    </Suspense>
                     </div>)
                 })
             }
