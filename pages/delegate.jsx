@@ -4,7 +4,7 @@ const delegate = () => {
     return(<div>
         <Navi/>
         <h1>
-            Delegate
+            Delegate, Cheesecake
         </h1>
     </div>);
 }
