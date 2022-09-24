@@ -10,9 +10,13 @@ import { motion } from "framer-motion";
 
 const events = ({events}) => {
 
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [admin, setAdmin] = useState(false);
 
     const eventList = JSON.parse(events);
+
+    async function getAdmin(uid){
+        
+    }
 
     const auth = getAuth(app);
     useEffect(()=>{
@@ -21,7 +25,7 @@ const events = ({events}) => {
                 // User is signed in, see docs for a list of available properties
                 // https://firebase.google.com/docs/reference/js/firebase.User
                 const uid = user.uid;
-                setLoggedIn(true);
+                
             } else {
                 console.log('No Login detected.')
             }
