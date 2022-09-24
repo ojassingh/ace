@@ -6,10 +6,11 @@ import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged} from "@firebase/auth";
 import { app } from "../../firebase/config";
 import { motion } from "framer-motion";
+import EventCard from "../../components/eventCard";
 
-const DynamicEvent = dynamic(() => import('../components/EventCard.jsx'), {
-    suspense: true,
-  })
+// const DynamicEvent = dynamic(() => import('../components/EventCard.jsx'), {
+//     suspense: true,
+//   })
 
 
 const events = ({events}) => {
@@ -53,7 +54,7 @@ const events = ({events}) => {
                 eventList.map((event)=>{
                     return(<div key={event.id}>
                     <Suspense fallback={`Loading...`}>
-                        <DynamicEvent 
+                        <EventCard 
                             id={event.id}
                             name={event.name}
                             date={event.date}
