@@ -8,14 +8,12 @@ import { app } from "../../firebase/config";
 import { motion } from "framer-motion";
 import EventCard from "../../components/eventCard";
 import { Suspense } from "react";
-import { Modal, ModalHeader, ModalOverlay, ModalCloseButton, useDisclosure, ModalBody, ModalContent, ModalFooter, Button} from "@chakra-ui/react";
 
 const events = ({events}) => {
 
     const eventList = JSON.parse(events);
     const auth = getAuth(app);
     const[button, setButton]= useState('')
-    const { isOpen, onOpen, onClose } = useDisclosure()
 
     useEffect(()=>{
         onAuthStateChanged(auth, (user) => {
@@ -38,29 +36,7 @@ const events = ({events}) => {
 
 
     function eventHandler() {
-      return (
-        <Fragment>
-          <Button onClick={onOpen}>Open Modal</Button>
-
-          <Modal isOpen={isOpen} onClose={onClose}>
-            <ModalOverlay />
-            <ModalContent>
-              <ModalHeader>Modal Title</ModalHeader>
-              <ModalCloseButton />
-              <ModalBody>
-                <p>Hello hello</p>
-              </ModalBody>
-
-              <ModalFooter>
-                <Button colorScheme='blue' mr={3} onClick={onClose}>
-                  Close
-                </Button>
-                <Button variant='ghost'>Secondary Action</Button>
-              </ModalFooter>
-            </ModalContent>
-          </Modal>
-        </Fragment>
-      )
+      console.log('testing')
     }
 
 
