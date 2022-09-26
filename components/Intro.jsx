@@ -1,10 +1,7 @@
-import { SimpleGrid, Box, Container, Button} from '@chakra-ui/react';
 import styles from '../styles/Home.module.scss';
 import Torus from '../components/Torus';
-import Navi from '../components/Navi';
 import { Fragment } from 'react';
 import { motion } from 'framer-motion';
-import { AspectRatio } from '@chakra-ui/react';
 // const bg = require("../public/website-background.mp4");
 
 export default function Intro() {
@@ -12,8 +9,8 @@ export default function Intro() {
     <Fragment>
       <div className={styles.container}>
 
-      <SimpleGrid columns={2}>
-            <Box>
+      <div className='grid grid-cols-2'>
+            <div>
               <h1 className={styles.introheading}>
               Place a really cool phrase here.{<br/>}
               And here.
@@ -33,11 +30,11 @@ export default function Intro() {
               
             </div>  
             <p>DECA UTSC is a student-led club, built to improve career centric skills amongst undergraduates. Join us. Emerge a leader.</p>
-            </Box>
-            <Box>
+            </div>
+            <div>
               <Torus/>
-            </Box>
-          </SimpleGrid>
+            </div>
+          </div>
     </div>
     </Fragment>
   )

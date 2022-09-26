@@ -29,7 +29,7 @@ const EventCard = (props) => {
         <h1 className="p-5 text-center text-2xl pl-5">{props.name}</h1>
         <motion.button className="outline outline-offset-2 outline-1 m-5 rounded-full hover:bg-blue-500 outline-white-500 px-10 py-3 ..."
               whileHover={{ translateY: -10}}> 
-                <Link href={'events/'+props.id}>Learn more</Link>
+                <Link href={'/events/'+props.id}>Learn more</Link>
         </motion.button>
       </div>);
 }

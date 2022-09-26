@@ -1,48 +1,67 @@
 import Navi from "../../components/Navi";
 import styles from '../../styles/Events.module.scss';
-import { collection, getDocs} from "firebase/firestore";
+import { collection, getDocs, doc, getDoc} from "firebase/firestore";
 import { database } from "../../firebase/config";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged} from "@firebase/auth";
 import { app } from "../../firebase/config";
 import { motion } from "framer-motion";
 import EventCard from "../../components/eventCard";
 import { Suspense } from "react";
-
-// const DynamicEvent = dynamic(() => import('../components/EventCard.jsx'), {
-//     suspense: true,
-//   })
-
+import { Modal, ModalHeader, ModalOverlay, ModalCloseButton, useDisclosure, ModalBody, ModalContent, ModalFooter, Button} from "@chakra-ui/react";
 
 const events = ({events}) => {
 
-    const [loggedIn, setLoggedIn] = useState(false);
-
     const eventList = JSON.parse(events);
-
     const auth = getAuth(app);
+    const[button, setButton]= useState('')
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
     useEffect(()=>{
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                // User is signed in, see docs for a list of available properties
-                // https://firebase.google.com/docs/reference/js/firebase.User
-                const uid = user.uid;
-                setLoggedIn(true);
-            } else {
-                console.log('No Login detected.')
+                getDoc(doc(database, "usersCollection", user.uid)).then(docSnap => {
+                    if (docSnap.exists()) {
+                    //   console.log("Document data:", docSnap.data());
+                      if(docSnap.data().memberType=='admin'){
+                        setButton(<motion.button onClick={eventHandler} className="outline outline-offset-2 outline-1 my-8 mr-5 rounded-full hover:bg-green-500 outline-white-500 px-10 py-3 ml-5 ...">
+                        Add event
+                      </motion.button>)
+                      }
+                    } else {
+                      console.log("No such document!");
+                    }
+            })
             }
         });
     }, [])
 
 
-    const [button, setButton] = useState()
-    useEffect(()=>{
-        if(loggedIn){
-            setButton(<motion.button className="outline outline-offset-2 outline-1 my-5 mr-5 rounded-full hover:bg-red-500 outline-white-500 px-5 py-3 ..."> 
-              Add event
-            </motion.button>)
-        }
-    })
+    function eventHandler() {
+      return (
+        <Fragment>
+          <Button onClick={onOpen}>Open Modal</Button>
+
+          <Modal isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>Modal Title</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <p>Hello hello</p>
+              </ModalBody>
+
+              <ModalFooter>
+                <Button colorScheme='blue' mr={3} onClick={onClose}>
+                  Close
+                </Button>
+                <Button variant='ghost'>Secondary Action</Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
+        </Fragment>
+      )
+    }
 
 
     return(<div className={styles.container}>
@@ -84,6 +103,9 @@ const events = ({events}) => {
 
 
 export const getStaticProps = async () => {
+    const auth = getAuth(app);
+    
+
     const entries = await getDocs((collection(database, "events")));
     const data = entries.docs.map(entry => ({
       id: entry.id,
@@ -92,8 +114,11 @@ export const getStaticProps = async () => {
 
     const events = JSON.stringify(data);
 
+    
     return {
-      props: { events },
+      props: {
+        events,
+      },
       revalidate: 10
     }
   }

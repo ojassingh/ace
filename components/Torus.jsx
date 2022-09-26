@@ -1,4 +1,3 @@
-import { StylesProvider } from "@chakra-ui/react";
 import { Canvas } from "@react-three/fiber"
 import styles from "../styles/Torus.module.scss"
 import { motion } from "framer-motion-3d";

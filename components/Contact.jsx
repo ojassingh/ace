@@ -1,10 +1,10 @@
  import styles from '../styles/Contact.module.scss';
-import { FormControl, FormLabel, Input, FormHelperText } from '@chakra-ui/react';
+// import { FormControl, FormLabel, Input, FormHelperText } from '@chakra-ui/react';
 
 const Contact = () => {
     return(<div className={styles.container}>
         <div>
-            <h1 className={styles.title}>Get in touch with us</h1>
+            {/* <h1 className={styles.title}>Get in touch with us</h1>
             <FormControl>
             <div className='s'>
                <FormLabel htmlFor='email'>Email address</FormLabel>
@@ -16,7 +16,7 @@ const Contact = () => {
             </div>
             <FormLabel htmlFor='message'>Message</FormLabel>
             <Input id='message' type='message' />
-            </FormControl>
+            </FormControl> */}
         </div>
     </div>);
 }   
