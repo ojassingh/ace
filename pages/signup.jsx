@@ -1,5 +1,4 @@
 import styles from '../styles/Login.module.scss';
-import { FormControl, FormLabel, Input, FormHelperText } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Navi from '../components/Navi';
@@ -10,6 +9,7 @@ import { database } from '../firebase/config';
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification} from "firebase/auth";
 import { app } from '../firebase/config';
 import { doc, setDoc } from 'firebase/firestore';
+import Footer from '../components/Footer';
 
 
 const signup = () => {
@@ -55,35 +55,36 @@ const signup = () => {
         <div className={styles.container}>
         <div className='align-middle'>
         <h1 className={styles.title}>Hello, young padawan.</h1>
-        <FormControl>
 
-            <FormLabel htmlFor='email'>Email address</FormLabel>
-            <Input className='text-black rounded-sm' id='email' type='email' 
+        <div>
+
+            <p htmlFor='email'>Email address</p>
+            <input className='text-black rounded-sm' id='email' type='email' 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
             />
             
-            <FormLabel htmlFor='text'>Full Name</FormLabel>
-            <Input className='text-black rounded-sm' id='name' type='name'
+            <p htmlFor='text'>Full Name</p>
+            <input className='text-black rounded-sm' id='name' type='name'
                 value={name}
                 onChange={(e) => setName(e.target.value)} 
             />
 
-            <FormLabel htmlFor='text'>Student Number</FormLabel>
-            <Input className='text-black rounded-sm' id='studentNumber' type='number'
+            <p htmlFor='text'>Student Number</p>
+            <input className='text-black rounded-sm' id='studentNumber' type='number'
                 value={studentNumber}
                 onChange={(e) => setNumber(e.target.value)} 
             />
 
-            <FormLabel htmlFor='password'>Password</FormLabel>
-            <Input className='text-black rounded-sm' id='password' type='password'
+            <p htmlFor='password'>Password</p>
+            <input className='text-black rounded-sm' id='password' type='password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
 
         
 
-        </FormControl>
+        </div>
         <br/>
 
         <motion.button className="outline outline-offset-2 outline-1 my-8 mr-5 rounded-full hover:bg-green-500 outline-white-500 px-10 py-3 ..."
