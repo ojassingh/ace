@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import Navi from "../components/Navi";
 
 const delegate = () => {
@@ -6,6 +7,7 @@ const delegate = () => {
         <h1>
             Delegate, Cheesecake
         </h1>
+        <Footer/>
     </div>);
 }
 export default delegate;

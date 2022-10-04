@@ -1,6 +1,7 @@
 import { getDocs, collection, getDoc, doc} from "firebase/firestore";
 import { database } from "../../firebase/config";
 import Navi from "../../components/Navi";
+import Footer from "../../components/Footer";
 
 const event = ({data}) => {
 
@@ -9,7 +10,10 @@ const event = ({data}) => {
     return(<div>
         <Navi/>
         <h1>Hello event {event.name} </h1>
-        <p>{event.description}</p>
+        <div dangerouslySetInnerHTML={{__html:event.description}}></div>
+        {/* <p>{event.description}</p> */}
+        {/* {event.description} */}
+        <Footer/>
     </div>);
 }
 

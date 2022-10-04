@@ -1,5 +1,4 @@
 import styles from '../styles/Login.module.scss';
-import { FormControl, FormLabel, Input, FormHelperText } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Navi from '../components/Navi';
@@ -8,6 +7,7 @@ import { useRouter } from 'next/router';
 import {signInWithEmailAndPassword} from "firebase/auth";
 import { onAuthStateChanged, getAuth} from 'firebase/auth';
 import { app } from '../firebase/config';
+import Footer from '../components/Footer';
 const login = () => {
 
     const router = useRouter();
@@ -53,20 +53,20 @@ const login = () => {
         <div className={styles.container}>
                 <div className='align-middle'>
                     <h1 className={styles.title}>Welcome back, padawan.</h1>
-                    <FormControl>
-                        <FormLabel htmlFor='email'>Email address</FormLabel>
-                        <Input id='email' type='email' className='text-black rounded-md' 
+                    <div>
+                        <div htmlFor='email'>Email address</div>
+                        <input id='email' type='email' className='text-black rounded-md' 
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
-                        <FormHelperText>We'll never share your email.</FormHelperText>
+                        <p>We'll never share your email.</p>
 
-                        <FormLabel htmlFor='password'>Password</FormLabel>
-                        <Input id='password' type='password' className='text-black rounded-md'
+                        <div htmlFor='password'>Password</div>
+                        <input id='password' type='password' className='text-black rounded-md'
                             value={password}
                             onChange={(e) => setPassword(e.target.value)} 
                         />
-                    </FormControl>
+                    </div>
 
                     <motion.button className='underline underline-offset-1 text-cyan-500' >
                         <Link href='/signup'>Forgot password?</Link>
@@ -90,6 +90,7 @@ const login = () => {
                     <br/>
                 </div>
         </div>
+        <Footer/>
         </Fragment>
     );
 }

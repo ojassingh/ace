@@ -103,6 +103,7 @@ const signup = () => {
        
         </div>
     </div>
+    <Footer/>
     </Fragment>);
 }
 

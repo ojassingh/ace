@@ -6,6 +6,7 @@ import { getAuth } from "@firebase/auth";
 import { onAuthStateChanged } from "@firebase/auth";
 import { signOut } from "@firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
+import Footer from "../components/Footer";
 
 const account = () => {
 
@@ -65,7 +66,7 @@ const account = () => {
             <button onClick={signOutHandler}>
                 Sign out
             </button>
-
+            <Footer/>
         </div>)
 
 }

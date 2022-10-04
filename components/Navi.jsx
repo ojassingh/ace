@@ -37,7 +37,7 @@ const Navi = () => {
     return(
         <div className={styles.container}>
         <div className="nav-bar flex pl-4">
-            <div  className="nav-brand w-1/2 py-5 pl-40"><Link href='/'>[ACE UTSC LOGO]</Link></div> 
+            <div  className="nav-brand w-1/2 py-5 pl-10"><Link href='/'>[ACE UTSC LOGO]</Link></div> 
             <div className="py-50 w-1/2">
                 <ul className="nav-nav flex">
                     <li className="nav-list py-5 pl-12"><Link className="nav-link" href="/">[Home]</Link></li>

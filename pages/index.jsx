@@ -3,8 +3,7 @@ import ClubInfo from '../components/ClubInfo';
 import Contact from '../components/Contact';
 import Navi from '../components/Navi';
 import { Fragment } from 'react';
-import { motion } from 'framer-motion';
-import {useState} from 'react';
+import Footer from '../components/Footer';
 
 function Home() {
 
@@ -15,6 +14,7 @@ function Home() {
         <Intro/>
         <ClubInfo/>
         <Contact/>
+        <Footer/>
       </Fragment>
   )
 }

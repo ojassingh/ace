@@ -1,4 +1,5 @@
  import styles from '../styles/Contact.module.scss';
+ 
 // import { FormControl, FormLabel, Input, FormHelperText } from '@chakra-ui/react';
 
 const Contact = () => {
