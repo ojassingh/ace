@@ -4,7 +4,11 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      // fontFamily: {
+      //   sans: ['Inter var'],
+      // },
+    },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-font-inter')],
 }
