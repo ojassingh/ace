@@ -2,19 +2,25 @@ import { Timestamp } from "firebase/firestore";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { deleteDoc, collection, doc } from "firebase/firestore";
+import { database } from "../firebase/config";
+import Router, { useRouter } from "next/router";
 
 
 const EventCard = (props) => {
 
+  const router = useRouter()
   const [dateFinal, setDate] = useState('');
 
-  const formatDate = (date)=>{
-    // const timstamp = (date.seconds*10000).toLocaleDateString();
-    // return timstamp;
-    // const date1 = new Date(date.seconds * 10000).toLocaleString('default', { month: 'short' }).toString();
-    // const date2 = new Date(date.seconds * 10000).toLocaleString('default').toString();
-    // const dateFinal = date1 + ' ' + date2.substring(0,1);
+  async function deleteHandler(){
+    console.log('initialising delete');
+    await deleteDoc(doc(database, "events", props.id));
+    router.push('/events')
+    console.log('deleted document: ' + props.id)
+  }
 
+  const formatDate = (date)=>{
     const date1 = new Timestamp(date.seconds, date.nanoseconds).toDate().toString();
     return date1.substring(4, 10);
   }
@@ -33,6 +39,8 @@ const EventCard = (props) => {
       >
         <Link href={"/events/" + props.id}>Learn more</Link>
       </motion.button>
+      {/* <FontAwesomeIcon className="text-white bg-white" icon="fa-solid fa-trash" /> */}
+      <button onClick={deleteHandler}>Delete</button>
     </div>
   );
 };

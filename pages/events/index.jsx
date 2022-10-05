@@ -44,7 +44,7 @@ const events = ({events}) => {
           </div>
         </div>
         <h1 className="ml-4 pl-10 text-5xl">Events</h1>
-        <div className="grid grid-auto-rows grid-flow-col gap-10 place-content-center content-evenly m-10">
+        <div className="grid grid-auto-rows grid-cols-4 items-stretch gap-10 place-content-center content-evenly m-10">
 
             {
                 eventList.map((event)=>{
@@ -82,9 +82,7 @@ const events = ({events}) => {
 
 
 export const getStaticProps = async () => {
-    const auth = getAuth(app);
-    
-
+  
     const entries = await getDocs((collection(database, "events")));
     const data = entries.docs.map(entry => ({
       id: entry.id,

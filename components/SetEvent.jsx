@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from "react"
-import { setDoc, doc, collection, addDoc} from "firebase/firestore"
+import { collection, addDoc} from "firebase/firestore"
 import { database, app } from "../firebase/config"
 import { Timestamp } from "firebase/firestore"
-import SetDescription from "./SetDescription";
 import dynamic from 'next/dynamic';
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import 'react-quill/dist/quill.snow.css';
+import { useRouter } from "next/router";
 
 const SetEvent = () => {
+
+  const router = useRouter();
     const [isOpen, setIsOpen] = useState(false)
     const [name, setName] = useState('');
     const [date, setDate] = useState(new Date())
@@ -34,7 +36,7 @@ const SetEvent = () => {
         setIsOpen(true)
       }
 
-    const getTimestamp = () => {
+    const getTimestamp = (date) => {
         const datefinal = Date.parse(date)
         const timestamp = Timestamp.fromMillis(datefinal);
         // console.log(date);
@@ -47,7 +49,7 @@ const SetEvent = () => {
         const finalDate = getTimestamp(endDate);
         const dead = getTimestamp(deadline);
         // console.log(timestamp)
-
+        closeModal();
         const docRef = await addDoc(collection(database, "events"), {
             name: name,
             date: startDate,
@@ -61,8 +63,8 @@ const SetEvent = () => {
         })
 
         console.log("Document written with ID: ", docRef.id);
+        router.push('/events');
 
-        closeModal();
     }
 
     const [descOpen, setDescOpen] = useState(false)
@@ -139,6 +141,7 @@ const SetEvent = () => {
                                 placeholder="Networking Event X..."
                                 value={name}
                                 onChange={(e)=>setName(e.target.value)}
+                                required={true}
                             />
                         </div>
 

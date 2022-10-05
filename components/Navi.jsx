@@ -10,18 +10,13 @@ const Navi = () => {
 
     const auth = getAuth(app);
 
-    
-
     const [button, setButton] = useState(<Link href='/login' className="nav-link">[Login]</Link>);
 
 
     useEffect(()=>{
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                // User is signed in, see docs for a list of available properties
-                // https://firebase.google.com/docs/reference/js/firebase.User
                 const uid = user.uid;
-                // console.log('user is signed in: ' + uid);
                 setSession(true);
                 setButton(<Link href='/account' className="nav-link">[Account]</Link>)
                    
@@ -32,7 +27,7 @@ const Navi = () => {
     }, [])
 
 
-
+    const navibar = ['Home', 'About', 'Events', 'Delegate', 'Contact', 'Account'];
      
     return(
         <div className={styles.container}>
@@ -45,11 +40,7 @@ const Navi = () => {
                     <li className="nav-list py-5 pl-12"><Link className="nav-link" href="/events">[Events]</Link></li>
                     <li className="nav-list py-5 pl-12"><Link className="nav-link" href="/delegate">[Delegate]</Link></li>
                     <li className="nav-list py-5 pl-12"><Link className="nav-link" href="/contact">[Contact]</Link></li>
-                    <li className="nav-list py-5 pl-12">
-                        <div>
-                            {button}
-                        </div>
-                    </li>
+                    <li className="nav-list py-5 pl-12">{button}</li>
                 </ul>
             </div>
         </div>

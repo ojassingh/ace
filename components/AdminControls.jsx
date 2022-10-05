@@ -2,8 +2,7 @@ import { useState } from "react"
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from "react"
 import SetEvent from "./SetEvent"
-
-
+import SetSession from "./SetSession"
 
 
 
@@ -17,18 +16,6 @@ export function MyModal() {
     function openModal() {
       setIsOpen(true)
     }
-
-
-    const trainingHandler = () => {
-        // const [name, setName] = useState('');
-        // const [date, setData] = useState('')
-        // const [descr, setDescr] = useState('')
-        // const [link, setLink] = useState('')
-    
-    
-        console.log('penis');
-    }
-    
 
   
     return (
@@ -84,8 +71,9 @@ export function MyModal() {
 
                     <div className="grid content-center">
                         <SetEvent/>
+                        <SetSession/>
 
-                        <div className="mt-4">
+                        {/* <div className="mt-4">
                         <button
                             type="button"
                             className="inline-flex rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
@@ -93,7 +81,7 @@ export function MyModal() {
                         >
                             Add Training Session
                         </button>
-                        </div>
+                        </div> */}
                     </div>
   
                     <div className="mt-4 grid justify-items-end">
