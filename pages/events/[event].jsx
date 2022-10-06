@@ -11,6 +11,8 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const event = ({data}) => {
 
+  // console.log(process.env.NEXT_PUBLIC_API_KEY);
+
 
   const event = JSON.parse(data);
 
