@@ -19,7 +19,7 @@ const contact = () => {
     const eventHandler = (e) => {
         e.preventDefault()
         console.log('Initiating contact form request ...');
-        emailjs.sendForm(process.env.EMAILJS_SERVICE_ID, process.env.EMAILJS_TEMPLATE_ID, e.target, process.env.EMAILJS_PUBLIC_KEY, templateParams)
+        emailjs.sendForm(process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID, process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID, e.target, process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY, templateParams)
         .then((result) => {
             console.log('Success, code: ' + result.text);
         }, (error) => {

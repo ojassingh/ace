@@ -9,7 +9,7 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import 'react-quill/dist/quill.snow.css';
 import { useRouter } from "next/router";
 
-const SetEvent = () => {
+const SetEvent = (props) => {
 
   const router = useRouter();
     const [isOpen, setIsOpen] = useState(false)
@@ -17,8 +17,6 @@ const SetEvent = () => {
     const [date, setDate] = useState(new Date())
     const [deadline, setDeadline] = useState(new Date())
     const [endDate, setEndDate] = useState(new Date());
-    const  [startTime, setSTime] = useState(new Date());
-    const  [endTime, setETime] = useState(new Date());
     const [descr, setDescr] = useState('');
     const [gMPrice, setGMPrice] = useState('')
     const [price, setPrice] = useState('')
@@ -59,6 +57,7 @@ const SetEvent = () => {
             price: price,
             gMPrice, gMPrice,
             description: descr,
+            location: loc,
             gmOnly: gmOnly
         })
 
@@ -174,7 +173,7 @@ const SetEvent = () => {
                             <input
                                 className="mt-2 inline-flex rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                                 id="name"
-                                type='date'
+                                type='datetime-local'
                                 value={deadline}
                                 placeholder="yyyy-mm-dd"
                                 onChange={(e)=>setDeadline(e.target.value)}
@@ -273,9 +272,10 @@ const SetEvent = () => {
                                     </p>
                                     </div>
 
-                                    <div className="grid w-96">
+                                    <div className="mt-2 text-black rounded-lg grid w-96">
                                         <ReactQuill
                                             className="mt-4 w-96"
+                                            theme="snow"
                                             value={descr}
                                             onChange={(e)=>setDescr(e)}   
                                             placeholder='spread your message...'   
