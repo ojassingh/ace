@@ -6,6 +6,7 @@ import EventCard from "../../components/eventCard";
 import Footer from "../../components/Footer";
 import Image from "next/image";
 import spiderman from '../../public/spiderman.jpeg'
+import logo from '../../public/logo.jpg'
 
 const events = ({events}) => {
 
@@ -45,7 +46,7 @@ const events = ({events}) => {
               <div className="col-span-4 bg-blue-100/10 rounded-md">
                 <div className="ml-4 p-10">
                       <Image 
-                        src={spiderman}
+                        src={logo}
                         alt=''
                         // height='64'
                         // width='64'
@@ -58,7 +59,7 @@ const events = ({events}) => {
               <div className="col-span-6 bg-blue-100/10 rounded-md">
                 <div className="grid place-content-center ml-4 p-10">
                       <Image 
-                        src={spiderman}
+                        src={logo}
                         alt=''
                         height='200'
                         width='200'

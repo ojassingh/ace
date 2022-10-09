@@ -1,6 +1,5 @@
 import { Carousel } from "flowbite-react";
 import logo from '../public/logo-white.jpg'
-
 import Image from "next/image";
 
 const CarouselComp = () => {
