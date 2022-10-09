@@ -1,5 +1,5 @@
 import { loadStripe } from '@stripe/stripe-js';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import logo from '../public/logo-white.jpg'
 
@@ -10,6 +10,16 @@ const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
 export default function PreviewPage(props) {
+
+  const [view, setView] = useState(<div className='grid justify-items-center'>
+    {!props.gmOnly && <h1 className='text-sm text-gray-500'>Regular price: ${props.price.toString()}</h1>}
+    <h1 className='text-sm text-gray-500'>General Member price: ${props.gMPrice.toString()}</h1>
+  </div>)
+
+  if(props.gmOnly){
+
+  }
+
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search);
@@ -31,7 +41,7 @@ export default function PreviewPage(props) {
             />
             <div className='grid justify-items-center'>
               <h1 className='flex'>{props.name}</h1>
-              <h1 className='text-sm text-gray-500'>{props.price}</h1>
+              {view}
             </div>
         </div>
         <div className='grid justify-items-center'>

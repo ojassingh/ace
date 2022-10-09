@@ -3,7 +3,9 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "@firebase/auth";
 import { app } from "../firebase/config";
-
+import { database } from "../firebase/config";
+import { getDoc, doc } from "firebase/firestore";
+import { MyModal } from "./AdminControls";
 const Navi = () => {
 
     const [session, setSession] = useState(false);
@@ -12,13 +14,25 @@ const Navi = () => {
 
     const [button, setButton] = useState(<Link href='/login' className="nav-link">[Login]</Link>);
 
+    const [admin, setAdmin] = useState(null);
+
 
     useEffect(()=>{
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 const uid = user.uid;
-                setSession(true);
+                
                 setButton(<Link href='/account' className="nav-link">[Account]</Link>)
+                getDoc(doc(database, "usersCollection", user.uid)).then(docSnap => {
+                    if (docSnap.exists()) {
+                      if(docSnap.data().memberType=='admin'){
+                        setSession(true);
+                        setAdmin(
+                      <MyModal/>
+                      )
+                      }
+                    }
+            })
                    
             } else {
                 console.log('no on is logged in')
@@ -44,6 +58,9 @@ const Navi = () => {
                 </ul>
             </div>
         </div>
+        {session && <div className="grid justify-items-end">
+            {admin}
+        </div>}
 </div>);
 }
 

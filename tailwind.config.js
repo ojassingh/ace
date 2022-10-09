@@ -1,5 +1,6 @@
 module.exports = {
   content: [
+    "./node_modules/flowbite-react/**/*.js",
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
@@ -10,5 +11,8 @@ module.exports = {
       // },
     },
   },
-  plugins: [require('tailwindcss-font-inter')],
+  plugins: [
+    require('tailwindcss-font-inter'),
+    require("flowbite/plugin")
+  ],
 }

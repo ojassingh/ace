@@ -3,12 +3,14 @@ import Footer from '../components/Footer';
 import Navi from '../components/Navi';
 import styles from '../styles/Contact.module.scss'
 import emailjs from '@emailjs/browser';
+import Router, { useRouter } from 'next/router';
 
 const contact = () => {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
+    const router = useRouter();
 
     var templateParams = {
         name: name,
@@ -22,6 +24,9 @@ const contact = () => {
         emailjs.sendForm(process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID, process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID, e.target, process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY, templateParams)
         .then((result) => {
             console.log('Success, code: ' + result.text);
+            router.reload();
+            alert('Message sent! We will get back to you shortly.')
+
         }, (error) => {
             alert(error.text + ' Send an email to ace.uoftscarborough@gmail.com');
         });

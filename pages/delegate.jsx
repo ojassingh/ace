@@ -11,35 +11,10 @@ import { onAuthStateChanged } from "@firebase/auth";
 const delegate = ({sessions}) => {
 
     const sessionList = JSON.parse(sessions);
-    const auth = getAuth(app);
-    const[button, setButton]= useState('')
-
-    useEffect(()=>{
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                getDoc(doc(database, "usersCollection", user.uid)).then(docSnap => {
-                    if (docSnap.exists()) {
-                      if(docSnap.data().memberType=='admin'){
-                        setButton(
-                      <MyModal/>
-                      )
-                      }
-                    } else {
-                      console.log("No such document!");
-                    }
-            })
-            }
-        });
-    }, [])
 
 
     return(<div className="bg-black text-white">
         <Navi/>
-        <div className="grid justify-items-end">
-          <div className="flex">
-            {button}
-          </div>
-        </div>
         <div id="training-session-display" className="grid grid-auto-rows grid-cols-4 items-stretch gap-10 justify-items-center m-10">
 
             {

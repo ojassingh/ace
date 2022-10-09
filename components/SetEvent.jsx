@@ -2,12 +2,13 @@ import { useState } from "react";
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from "react"
 import { collection, addDoc} from "firebase/firestore"
-import { database, app } from "../firebase/config"
+import { database } from "../firebase/config"
 import { Timestamp } from "firebase/firestore"
+import { useRouter } from "next/router";
 import dynamic from 'next/dynamic';
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import 'react-quill/dist/quill.snow.css';
-import { useRouter } from "next/router";
+// import QuillToolbar from "./EditorToolbar";
 
 const SetEvent = (props) => {
 
@@ -18,13 +19,14 @@ const SetEvent = (props) => {
     const [deadline, setDeadline] = useState(new Date())
     const [endDate, setEndDate] = useState(new Date());
     const [descr, setDescr] = useState('');
-    const [gMPrice, setGMPrice] = useState('')
-    const [price, setPrice] = useState('')
+    const [gMPrice, setGMPrice] = useState(0);
+    const [price, setPrice] = useState(0);
     const [loc, setLoc] = useState('');
     const [loading, setLoading] = useState(false);
-    
     const [gmOnly, setGmOnly] = useState(false);
     const [quest, setQuest] = useState('');
+
+    // const[value, setValue] = useState(initialValue);
 
     function closeModal() {
         setIsOpen(false)
@@ -55,7 +57,7 @@ const SetEvent = (props) => {
             deadline: dead,
             // location: location,
             price: price,
-            gMPrice, gMPrice,
+            gMPrice: gMPrice,
             description: descr,
             location: loc,
             gmOnly: gmOnly
@@ -75,7 +77,6 @@ const SetEvent = (props) => {
       function openDesc() {
         setDescOpen(true)
       }
-
 
     return(<>  
 
@@ -189,7 +190,7 @@ const SetEvent = (props) => {
                                 className="mt-2 inline-flex rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                                 id="price"
                                 value={price}
-                                placeholder="$69"
+                                placeholder="Input number value only"
                                 onChange={(e)=>setPrice(e.target.value)}
                             />
                         </div>}
@@ -200,7 +201,7 @@ const SetEvent = (props) => {
                                 className="mt-2 inline-flex rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                                 id="gmprice"
                                 value={gMPrice}
-                                placeholder="$69"
+                                placeholder="Input number only"
                                 onChange={(e)=>setGMPrice(e.target.value)}
                             />
                         </div>
@@ -273,13 +274,17 @@ const SetEvent = (props) => {
                                     </div>
 
                                     <div className="mt-2 text-black rounded-lg grid w-96">
-                                        <ReactQuill
-                                            className="mt-4 w-96"
-                                            theme="snow"
-                                            value={descr}
-                                            onChange={(e)=>setDescr(e)}   
-                                            placeholder='spread your message...'   
-                                        />
+                                    {/* <QuillToolbar /> */}
+                                      <ReactQuill
+                                              className="mt-4 w-96"
+                                              theme="snow"
+                                              value={descr}
+                                              onChange={(e)=>setDescr(e)}   
+                                              placeholder='spread your message...' 
+                                              // modules={modules}
+                                              // formats={formats} 
+                                    />
+
                                     </div>
 
                                     
