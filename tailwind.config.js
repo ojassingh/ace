@@ -21,4 +21,5 @@ module.exports = {
     require('tailwindcss-font-inter'),
     require("flowbite/plugin")
   ],
+  
 }

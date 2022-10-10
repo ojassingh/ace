@@ -7,6 +7,7 @@ import Footer from "../../components/Footer";
 import Image from "next/image";
 import spiderman from '../../public/spiderman.jpeg'
 import logo from '../../public/logo.jpg'
+import CarouselComp from '../../components/CarouselComp'
 
 const events = ({events}) => {
 
@@ -67,6 +68,7 @@ const events = ({events}) => {
                         width='200'
                       />
                 </div>
+                {/* <CarouselComp/> */}
               </div>
 
               <div className="col-span-4 bg-white rounded-md">

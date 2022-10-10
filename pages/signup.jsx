@@ -20,7 +20,8 @@ const signup = () => {
     const [loading, setLoading] = useState(false)
     const [studentNumber, setNumber] = useState('');
     const [password, setPassword] = useState('');
-
+    const [memberType, setMember] = useState('regular'); //regular members or general members
+    const [userType, setUser] = useState('guest'); // admins or guests
 
 
     const signInHandler = (email, password, studentNumber, name) =>{
@@ -34,9 +35,12 @@ const signup = () => {
             // sendEmailVerification(user)
             // alert("Check email for verification!")
             const docData = {
-              // uid: userCredential.user.uid, 
+              // uid: userCredential.user.uid,
+              email: email, 
               displayName: name, 
-              studentNumber: studentNumber
+              studentNumber: studentNumber,
+              memberType: memberType,
+              userType: userType,
             }
             setDoc(doc(database, "usersCollection", user.uid), docData);
           // ...

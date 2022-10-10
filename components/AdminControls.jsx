@@ -3,6 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from "react"
 import SetEvent from "./SetEvent"
 import SetSession from "./SetSession"
+import Link from "next/link"
 
 
 
@@ -63,21 +64,27 @@ export function MyModal() {
                     >
                       {/* Add Event */}
                     </Dialog.Title>
-                    <div className="mt-2">
-                      <p className="text-sm text-gray-500">
-                        Choose what event you'd like to add.
+                    <div className="mt-2 grid justify-items-center">
+                      <p className="text-md font-semibold text-blue-600">
+                        Click the option you would like to choose:
                       </p>
                     </div>
 
-                    <div className="grid content-center">
+                    <div className="grid justify-items-center">
                         <SetEvent/>
                         <SetSession/>
+                        <a
+                            href="/masterdata"
+                            className="mt-4 rounded-md border border-transparent bg-blue-100 w-64 ... py-2 text-sm font-medium text-blue-900 hover:bg-blue-200">
+                                {/* <Link href='/masterdata'>Master data</Link> */}
+                                <div className="grid justify-items-center"><p>Master Data</p></div>
+                          </a>
                     </div>
   
                     <div className="mt-4 grid justify-items-end">
                       <button
                         type="button"
-                        className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                        className="inline-flex justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                         onClick={closeModal}
                       >
                         Go back.

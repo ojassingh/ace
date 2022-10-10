@@ -25,7 +25,7 @@ const Navi = () => {
                 setButton(<Link href='/account' className="nav-link">[Account]</Link>)
                 getDoc(doc(database, "usersCollection", user.uid)).then(docSnap => {
                     if (docSnap.exists()) {
-                      if(docSnap.data().memberType=='admin'){
+                      if(docSnap.data().userType=='admin'){
                         setSession(true);
                         setAdmin(
                       <MyModal/>
