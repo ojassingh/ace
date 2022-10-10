@@ -7,11 +7,11 @@ import { motion } from 'framer-motion';
 export default function Intro() {
   return (
     <Fragment>
-      <div className={styles.container}>
+      <div className='px-16 py-10'>
 
       <div className='grid grid-cols-2'>
             <div>
-              <h1 className={styles.introheading}>
+              <h1 className='mt-8 text-7xl font-bold text-black'>
               Place a really cool phrase here.{<br/>}
               And here.
               </h1>

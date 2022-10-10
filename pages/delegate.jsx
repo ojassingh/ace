@@ -1,20 +1,20 @@
 import Footer from "../components/Footer";
 import Navi from "../components/Navi";
-import { MyModal } from "../components/AdminControls";
-import { database, app} from "../firebase/config";
-import { getAuth } from "@firebase/auth";
-import { getDocs, collection, doc, getDoc} from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { database} from "../firebase/config";
+import { getDocs, collection} from "firebase/firestore";
+
 import SessionCard from "../components/SessionCard";
-import { onAuthStateChanged } from "@firebase/auth";
+
 
 const delegate = ({sessions}) => {
 
     const sessionList = JSON.parse(sessions);
+    
 
 
-    return(<div className="bg-black text-white">
+    return(<div className="">
         <Navi/>
+        <div>
         <div id="training-session-display" className="grid grid-auto-rows grid-cols-4 items-stretch gap-10 justify-items-center m-10">
 
             {
@@ -46,6 +46,7 @@ const delegate = ({sessions}) => {
             <h1>
                 How?
             </h1>
+        </div>
         </div>
         <Footer/>
     </div>);

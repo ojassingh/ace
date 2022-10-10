@@ -35,16 +35,14 @@ const Navi = () => {
             })
                    
             } else {
-                console.log('no on is logged in')
+                console.log('No one is logged in')
             }
         });
     }, [])
 
-
-    const navibar = ['Home', 'About', 'Events', 'Delegate', 'Contact', 'Account'];
      
     return(
-        <div className={styles.container}>
+        <div className='bg-beige'>
         <div className="nav-bar flex pl-4">
             <div  className="nav-brand w-1/2 py-5 pl-10"><Link href='/'>[ACE UTSC LOGO]</Link></div> 
             <div className="py-50 w-1/2">

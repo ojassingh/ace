@@ -4,30 +4,30 @@ import Image from "next/image";
 
 const CarouselComp = () => {
     return(
-        <div className="mx-16 bg-black h-128">
+        <div className="mx-64 bg-black h-96">
             {/* <div className=""> */}
-            <Carousel className="rounded-lg">
+            <Carousel className="grid justify-items-center rounded-lg">
                 <Image
-                width='5184'
-                height='3456'
+                // width='5184'
+                // height='3456'
                 src={logo}
                 alt="..."
                 />
                 <Image
-                width='5184'
-                height='3456'
+                // width='5184'
+                // height='3456'
                 src={logo}
                 alt="..."
                 />
                 <Image
-                width='5184'
-                height='3456'
+                // width='5184'
+                // height='3456'
                 src={logo}
                 alt="..."
                 />
                 <Image
-                width='5184'
-                height='3456'
+                // width='5184'
+                // height='3456'
                 src={logo}
                 alt="..."
                 />

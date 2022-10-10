@@ -45,7 +45,7 @@ export default function PreviewPage(props) {
             </div>
         </div>
         <div className='grid justify-items-center'>
-          <button className='m-4 px-20 py-2 bg-indigo-700 rounded-md' type="submit" role="link">
+          <button className='m-4 px-20 py-2 bg-indigo-700 text-white rounded-md' type="submit" role="link">
             Checkout
           </button>
         </div>

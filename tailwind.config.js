@@ -6,10 +6,16 @@ module.exports = {
   ],
   theme: {
     extend: {
-      // fontFamily: {
-      //   sans: ['Inter var'],
-      // },
+      height: {
+        '128': '32rem',
+      }
     },
+    colors: {
+      // Configure your color palette here
+        'beige': '#FCFCFC',
+        'bermuda': '#78dcca',
+        'midnight': '#121063',
+    }
   },
   plugins: [
     require('tailwindcss-font-inter'),

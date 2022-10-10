@@ -12,9 +12,9 @@ const events = ({events}) => {
 
     const eventList = JSON.parse(events);
 
-    return(<div className='bg-black text-white'>
+    return(<div className='bg-beige text-black'>
         <Navi/>
-        <h1 className="ml-4 px-16 font-semibold text-6xl text-blue-700">Events</h1>
+        <h1 className="ml-4 px-16 font-semibold text-6xl text-black">Events</h1>
         <div className="grid justify-items-center">
           <div className="grid grid-auto-rows grid-cols-3 justify-items-center gap-10 m-10">
                 {
@@ -32,9 +32,9 @@ const events = ({events}) => {
         </div>
         <br/>
         <div>
-        <div className="mx-16 grid grid-cols-10 gap-4">
-              <div className="col-span-6 bg-blue-100/10 rounded-md">
-                <div className="ml-4 p-10">
+        <div className="drop-shadow-xl mx-16 grid grid-cols-10 gap-4">
+              <div className="col-span-6 bg-white rounded-md">
+                <div className=" ml-4 p-10">
                     <h1 className="font-semibold text-blue-500 text-5xl">Nationals</h1>
                     <br/>
                     <p className="text-lg">DECA U Nationals (formerly Provincials) is an annual 3-day undergraduate conference packed with competition, networking opportunities, and connections with thousands of other post-secondary students from 21 other universities across the province. With a broad range of competition categories from marketing to finance to consulting, there will be something that will fit everyone’s interests.
@@ -43,11 +43,12 @@ const events = ({events}) => {
                 </div>
               </div>
 
-              <div className="col-span-4 bg-blue-100/10 rounded-md">
+              <div className="col-span-4 bg-white rounded-md">
                 <div className="ml-4 p-10">
                       <Image 
                         src={logo}
                         alt=''
+                        className="object-cover"
                         // height='64'
                         // width='64'
                       />
@@ -55,10 +56,11 @@ const events = ({events}) => {
               </div>
             </div>
 
-            <div className="mt-12 mx-16 grid grid-cols-10 gap-4">
-              <div className="col-span-6 bg-blue-100/10 rounded-md">
-                <div className="grid place-content-center ml-4 p-10">
+            <div className="drop-shadow-xl h-96 mt-12 mx-16 grid grid-cols-10 gap-4">
+              <div className="col-span-6 bg-white rounded-md">
+                <div className="agrid place-content-center ml-4 p-10">
                       <Image 
+                      className="object-cover"
                         src={logo}
                         alt=''
                         height='200'
@@ -67,7 +69,7 @@ const events = ({events}) => {
                 </div>
               </div>
 
-              <div className="col-span-4 bg-blue-100/10 rounded-md">
+              <div className="col-span-4 bg-white rounded-md">
                 <div className="ml-4 p-10">
                     <h1 className="text-5xl text-blue-500 font-semibold">Apricity</h1>
                     <br/>

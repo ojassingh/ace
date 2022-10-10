@@ -24,7 +24,7 @@ export function MyModal() {
           <button
             type="button"
             onClick={openModal}
-            className="text-green-500 inline-block rounded-md bg-white bg-opacity-20 mr-10 px-5 py-3 text-md font-medium text-green-500 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+            className="text-green-500 inline-block rounded-md bg-gray-900 mr-10 px-5 py-3 text-md font-medium text-green-400 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
           >
             Admin Controls
           </button>
@@ -72,16 +72,6 @@ export function MyModal() {
                     <div className="grid content-center">
                         <SetEvent/>
                         <SetSession/>
-
-                        {/* <div className="mt-4">
-                        <button
-                            type="button"
-                            className="inline-flex rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                            onClick={trainingHandler}
-                        >
-                            Add Training Session
-                        </button>
-                        </div> */}
                     </div>
   
                     <div className="mt-4 grid justify-items-end">

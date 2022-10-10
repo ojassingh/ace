@@ -9,7 +9,7 @@ const Torus = () => {
         value = window.devicePixelRatio;
     }
     const myMesh = useRef();
-    return(<div className={styles.container}>
+    return(<div className='h-128 bg-beige'>
         <Canvas
         dpr={value}
         gl={{antialias:true}}
@@ -17,7 +17,7 @@ const Torus = () => {
         linear>
         <ambientLight intensity={0.65}/>
         <directionalLight intensity={0.7} position={[5, 4, 10]} />
-        <color attach="background" args={[0x000000]} />
+        <color attach="background" args={[0xfefffe]} />
         <motion.group 
         animate={{
             rotateX: 3.14*2,
