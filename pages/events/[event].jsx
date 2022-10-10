@@ -97,12 +97,12 @@ const event = ({data, eventID}) => {
 
                   <ul className="mt-5 ml-3 pt-8 px-8">
                   {event.gmOnly && <li className="mb-2 flex font-medium text-sm text-red-500">This is an exclusive general member event only!</li>}
-                      <li className="mb-2 flex font-medium"><span className="text-blue-500 font-semibold mr-2">When? </span> {formatDate(event.date)}</li>
-                      <li className="mb-2 font-medium"><span className="text-blue-500  font-semibold mr-2">Event ends: </span> {formatDate(event.finalDate)}</li>
+                      <li className="mb-2 flex font-medium"><span className="text-blue-600 font-semibold mr-2">When? </span> {formatDate(event.date)}</li>
+                      <li className="mb-2 font-medium"><span className="text-blue-600  font-semibold mr-2">Event ends: </span> {formatDate(event.finalDate)}</li>
                       <li className="mb-2 font-medium"><span className="text-red-500  font-semibold mr-2">Deadline to register:</span> {formatDate(event.deadline)}</li>
-                      <li className="mb-2 font-medium"><span className="text-blue-500  font-semibold mr-2">General member price:</span> ${event.gMPrice.toString()}</li>
-                      {!event.gmOnly && <li className="mb-2 font-medium"><span className="text-blue-500  font-semibold mr-2">Price:</span> ${event.price.toString()}</li>}
-                      <li className="mb-2 flex font-medium"><span className="text-blue-500 font-semibold mr-2">📍 Location: </span> {event.location}</li>
+                      <li className="mb-2 font-medium"><span className="text-blue-600  font-semibold mr-2">General member price:</span> ${event.gMPrice.toString()}</li>
+                      {!event.gmOnly && <li className="mb-2 font-medium"><span className="text-blue-600  font-semibold mr-2">Price:</span> ${event.price.toString()}</li>}
+                      <li className="mb-2 flex font-medium"><span className="text-blue-600 font-semibold mr-2">📍 Location: </span> {event.location}</li>
                   </ul>
                   
                 </div>
@@ -112,7 +112,7 @@ const event = ({data, eventID}) => {
           <div id="content" className="gap-4 pb-20 grid grid-cols-10 px-16">
             <div className="drop-shadow-lg col-span-6 p-10 bg-blue-100/70 rounded-lg">
                     <div id='description' className="text-black">
-                      <h1 className="text-4xl text-blue-500 font-bold">About the event:</h1>
+                      <h1 className="text-4xl text-blue-600 font-bold">About the event:</h1>
                       <div className='mt-32 px-28'>
                           
                             <ReactQuill

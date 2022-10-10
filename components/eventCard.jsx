@@ -30,13 +30,15 @@ const EventCard = (props) => {
       </div>
       <div className="grid justify-items-center">
         <div className="flex">
-          <motion.button
-            className="outline outline-offset-2 outline-1 m-5 rounded-full hover:bg-blue-500 outline-white-500 px-10 py-3 ..."
-            whileHover={{ translateY: -10 }}
-          >
-          <Link className="font-semibold" href={"/events/" + props.id}>Learn more</Link>
-          </motion.button>
-
+        <motion.button
+              className="outline outline-offset-2 outline-1 m-5 rounded-full hover:bg-blue-500 outline-white-500 px-10 py-3 ..."
+              whileHover={{ translateY: -10 }}
+            >
+            <Link className="font-semibold" href={"/events/" + props.id}>
+            Learn more
+          </Link>
+            </motion.button>
+        
         </div>
       </div>
     </div>

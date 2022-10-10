@@ -34,17 +34,17 @@ const Contact = () => {
     }
 
     
-    return(<div className='bg-black'>
-        <div className="mx-16 p-20 rounded-md bg-blue-100/10">
+    return(<div className='drop-shadow-xl bg-white m-16'>
+        <div className="mx-16 p-20 rounded-md">
                 <div className="max-w-6xl mx-auto sm:px-6 lg:px-8">
                     <div className=" overflow-hidden">
                         <div className="grid grid-cols-1 md:grid-cols-2">
-                            <div className="p-6 mr-2 bg-blue-400/10 dark:bg-gray-800 sm:rounded-lg text-white">
-                                <h1 className="text-3xl sm:text-5xl dark:text-white font-semibold tracking-tight">
-                                    Get in touch
+                            <div className="p-6 mr-2 bg-gray-100 sm:rounded-lg text-black">
+                                <h1 className="text-blue-600 text-3xl sm:text-5xl font-semibold tracking-tight">
+                                    Get in touch with us!
                                 </h1>
-                                <p className="text-normal text-lg sm:text-2xl font-medium dark:text-gray-400 mt-2">
-                                    Fill in the form if you have any questions!
+                                <p className="text-normal text-lg font-medium dark:text-gray-400 mt-4">
+                                    We would love to here from you. Fill in the form if you have any questions!
                                 </p>
                                 <p className='text-md  dark:text-gray-400 mt-2'>We'll get back to you as soon as we can.</p>
 
@@ -62,7 +62,7 @@ const Contact = () => {
                                     <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" className="w-8 h-8 text-gray-500">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                     </svg>
-                                    <div className="text-white ml-4 text-md tracking-wide font-semibold w-40">
+                                    <div className="text-black ml-4 text-md tracking-wide font-semibold w-40">
                                         ace.uoftscarborough@gmail.com
                                     </div>
                                 </div>
@@ -84,7 +84,7 @@ const Contact = () => {
                                     <textarea onChange={(e)=>{setMessage(e.target.value)}} type="text" value={message} name="message" id="message" placeholder="Type your message here.." className="text-white w-100 mt-2 py-10 px-3 rounded-lg bg-blue-400/10 dark:bg-gray-800 border border-gray-400 dark:border-gray-700  font-semibold focus:border-indigo-500 focus:outline-none"/>
                                 </div>
 
-                                <button type="submit" className="text-white md:w-32 bg-indigo-600 hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-indigo-500 transition ease-in-out duration-300">
+                                <button type="submit" className="text-white md:w-32 bg-blue-600 hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-indigo-500 transition ease-in-out duration-300">
                                     Submit
                                 </button>
                             </form>

@@ -4,9 +4,9 @@ import Image from "next/image";
 
 const CarouselComp = () => {
     return(
-        <div className="mx-64 bg-black h-96">
+        <div className="mx-64 bg-black h-96 drop-shadow-xl rounded-lg">
             {/* <div className=""> */}
-            <Carousel className="grid justify-items-center rounded-lg">
+            <Carousel className="grid justify-items-center">
                 <Image
                 // width='5184'
                 // height='3456'
