@@ -12,7 +12,7 @@ const Navi = () => {
 
     const auth = getAuth(app);
 
-    const [button, setButton] = useState(<Link href='/login' className="nav-link">[Login]</Link>);
+    const [button, setButton] = useState(<Link href='/signup' className="nav-link">[Sign up]</Link>);
 
     const [admin, setAdmin] = useState(null);
 
