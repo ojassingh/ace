@@ -42,11 +42,10 @@ const event = ({data, eventID}) => {
             if (user) {
                 const uid = user.uid;
                 
-                
                 getDoc(doc(database, "usersCollection", user.uid)).then(docSnap => {
                     if (docSnap.exists()) {
-                      if(docSnap.data().memberType=='admin'){
-
+                      if(docSnap.data().userType=='admin'){
+                        
                         setButton(<UpdateEvent
                             eventID={eventID}
                             name={event.name}
@@ -84,7 +83,6 @@ const event = ({data, eventID}) => {
             <div className="flex">
               <h1 className="text-black font-semibold text-5xl">{event.name} <span>
                 {button}
-                {/* <button onClick={()=>{alert(eventID)}}>Click for eventID</button> */}
                 {removeButton}
               </span></h1>
             </div>

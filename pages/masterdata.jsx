@@ -7,9 +7,10 @@ import { useRouter } from "next/router";
 import MasterData from "../components/MasterData";
 import Navi from "../components/Navi";
 
-const masterdata = ({users}) => {
+const masterdata = ({users, events}) => {
 
     const userList = JSON.parse(users);
+    const evenList = JSON.parse(events);
 
     const router = useRouter();
     const auth = getAuth(app);
@@ -52,7 +53,8 @@ const masterdata = ({users}) => {
             {admin && <div className="h-screen">
                 <Navi/>
                 <MasterData
-                    list={userList}
+                    userList={userList}
+                    eventList={evenList}
                 />
             </div>}
         </div>
@@ -71,11 +73,20 @@ export const getStaticProps = async () => {
       ...entry.data()
     }));
 
+    const event_entries = await getDocs((collection(database, "events")));
+    const event_data = event_entries.docs.map(event => ({
+      id: event.id,
+      ...event.data()
+    }));
+
+
     const users = JSON.stringify(data);
+    const events = JSON.stringify(event_data);
 
     return {
       props: {
-        users,
+        users: users,
+        events: events
       },
       revalidate: 10
     }

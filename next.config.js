@@ -6,7 +6,7 @@ const nextConfig = {
 module.exports = {
   nextConfig,
   images: {
-    domains: ['flowbite.com'],
+    domains: ['flowbite.com', 'flowbite.s3.amazonaws.com'],
   },
   env: {
     NEXT_PUBLIC_EMAILJS_SERVICE_ID:process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
