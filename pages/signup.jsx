@@ -125,7 +125,7 @@ const signup = () => {
                 </a>
                 <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                     <div className="px-6 py-6 space-y-4 md:space-y-6 sm:p-8">
-                        <h1 className="dorp-shadow-xl text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                        <h1 className="drop-shadow-xl text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                             Create an account
                         </h1>
                         <form className="space-y-4 md:space-y-6" action="#">
@@ -160,20 +160,25 @@ const signup = () => {
                                 }}/>
                             </div>
                             
-                            {!loading && <div className='grid justify-items-center'>
-                                <button type="submit" className="px-32 rounded-lg py-2 text-white bg-blue-600 hover:bg-primary-700 focus:ring-4" onClick={(e) => {
+                            {!loading && 
+                            <div className='grid justify-items-center'>
+                                <button type="submit" className="px-32 rounded-lg py-2 text-white bg-blue-600" onClick={(e) => {
                                 e.preventDefault()
                                 signInHandler(email, password, studentNumber, name);
                                 }} 
                                 >
-                                    Create an account
+                                    Create account
                                 </button>
-                            </div>}
+                            </div>
+                            }
 
                             {loading && <div className='grid justify-items-center'>
                                 <button disabled type="submit" className="px-32 rounded-lg py-2 text-white bg-blue-600 hover:bg-primary-700 focus:ring-4"
-                                >
-                                    Loading ...
+                                ><Spinner
+                                    color="success"
+                                    aria-label="Success spinner example"
+                                />
+                                    <p className='ml-4'>Loading ...</p>
                                 </button>
                             </div>}
 

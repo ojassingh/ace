@@ -76,7 +76,7 @@ const event = ({data, eventID}) => {
     }, [])
 
 
-    return(<div className="">
+    return(<div className="bg-beige">
         <Navi/>
         <div className="bg-beige">
           <div id="content" className="px-16 mt-6">

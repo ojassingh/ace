@@ -34,7 +34,7 @@ const Contact = () => {
     }
 
     
-    return(<div className='drop-shadow-xl bg-white m-16'>
+    return(<div className='rounded-lg drop-shadow-xl bg-beige m-16'>
         <div className="mx-16 p-20 rounded-md">
                 <div className="max-w-6xl mx-auto sm:px-6 lg:px-8">
                     <div className=" overflow-hidden">

@@ -10,7 +10,7 @@ import Navi from "../components/Navi";
 const masterdata = ({users, events}) => {
 
     const userList = JSON.parse(users);
-    const evenList = JSON.parse(events);
+    const eventList = JSON.parse(events);
 
     const router = useRouter();
     const auth = getAuth(app);
@@ -54,7 +54,7 @@ const masterdata = ({users, events}) => {
                 <Navi/>
                 <MasterData
                     userList={userList}
-                    eventList={evenList}
+                    eventList={eventList}
                 />
             </div>}
         </div>
