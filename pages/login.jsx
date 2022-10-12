@@ -11,7 +11,6 @@ import Footer from '../components/Footer';
 import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from '../firebase/config';
 import { Spinner } from 'flowbite-react';
-
 const login = () => {
 
     const router = useRouter();
@@ -25,6 +24,7 @@ const login = () => {
                 const uid = user.uid;
                 console.log('User is already signed in, so redirecting.');
                 router.push('/account');
+                
             } else {
                 console.log('No Login detected.')
             }
@@ -42,7 +42,6 @@ const login = () => {
             // Signed in 
             const user = userCredential.user;
             alert("Logged in Successfully")
-            router.push('/')
         })
         .catch((error) => {
             const errorCode = error.code;

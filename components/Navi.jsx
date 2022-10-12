@@ -6,6 +6,8 @@ import { app } from "../firebase/config";
 import { database } from "../firebase/config";
 import { getDoc, doc } from "firebase/firestore";
 import { MyModal } from "./AdminControls";
+import { Avatar } from "flowbite-react";
+import duckie from '../public/chicken.png'
 const Navi = () => {
 
     const [session, setSession] = useState(false);
@@ -22,7 +24,12 @@ const Navi = () => {
             if (user) {
                 const uid = user.uid;
                 
-                setButton(<Link href='/account' className="nav-link">[Account]</Link>)
+                setButton(<a href='/account' className="nav-link">
+                    <Avatar
+                        img=""
+                        rounded={true}
+                    />
+                </a>)
                 getDoc(doc(database, "usersCollection", user.uid)).then(docSnap => {
                     if (docSnap.exists()) {
                       if(docSnap.data().userType=='admin'){

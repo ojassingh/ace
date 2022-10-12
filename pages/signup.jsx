@@ -95,10 +95,11 @@ const signup = () => {
               studentNumber: studentNumber,
               memberType: memberType,
               userType: userType,
+              registeredEvents: [],
             }
             setDoc(doc(database, "usersCollection", user.uid), docData);
             router.push('/')
-            alert('Thank you for logging in')
+            alert('You are now signed up!')
           // ...
         })
         .catch((error) => {

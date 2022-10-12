@@ -16,9 +16,6 @@ export default function PreviewPage(props) {
     <h1 className='text-sm text-gray-500'>General Member price: ${props.gMPrice.toString()}</h1>
   </div>)
 
-  if(props.gmOnly){
-
-  }
 
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
