@@ -2,13 +2,12 @@ import styles from '../styles/Home.module.scss';
 import Torus from '../components/Torus';
 import { Fragment } from 'react';
 import { motion } from 'framer-motion';
-// const bg = require("../public/website-background.mp4");
+import Link from 'next/link';
 
 export default function Intro() {
   return (
     <Fragment>
-      <div className='px-16 py-10'>
-
+      <div className='bg-beige h-150 ... px-16 py-10'>
       <div className='grid grid-cols-2'>
             <div>
               <h1 className='mt-8 text-7xl font-bold text-black'>
@@ -18,18 +17,18 @@ export default function Intro() {
 
               <div className='flex'>
 
-              <motion.button className="bg-red-500 hover:bg-white hover:text-black outline outline-offset-2 outline-1 my-8 mr-10 rounded-full outline-none px-10 py-4 shadow-md shadow-red-500/50 hover:shadow-none ..."
+              <motion.button
               whileHover={{ translateY: -10}}> 
-                EVENTS
+                <Link href='/events'><p className="bg-red-500 hover:text-black outline outline-offset-2 outline-1 my-8 mr-10 rounded-full outline-none px-10 py-4 shadow-md shadow-red-500/50 hover:shadow-none ...">EVENTS</p></Link>
               </motion.button>
 
-              <motion.button className="outline outline-offset-2 outline-1 my-8 mr-5 rounded-full hover:bg-violet-500 outline-white-500 px-10 py-3 ..."
+              <motion.div
               whileHover={{ translateY: -10}}> 
-                GET IN TOUCH
-              </motion.button>
+                <Link href='/contact'><p className="cursor-pointer outline outline-offset-2 outline-1 my-8 mr-5 rounded-full hover:bg-violet-500 outline-white-500 px-10 py-3 ...">GET IN TOUCH</p></Link>
+              </motion.div>
               
             </div>  
-            <p>DECA UTSC is a student-led club, built to improve career centric skills amongst undergraduates. Join us. Emerge a leader.</p>
+            <p className='text-xl font-normal'>DECA UTSC is a student-led club, built to improve career centric skills amongst undergraduates. Join us. Emerge a leader.</p>
             </div>
             <div>
               <Torus/>
@@ -39,12 +38,3 @@ export default function Intro() {
     </Fragment>
   )
 }
-
-
-// export function getServerSideProps(){
-//   return{
-//     props{
-
-//     }
-//   }
-// }

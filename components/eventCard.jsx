@@ -20,28 +20,31 @@ const EventCard = (props) => {
 
   return (
     <div className="drop-shadow-xl bg-white rounded-lg w-72 ...">
-      <div className="grid justify-items-end pr-7 pt-5">
-        <p suppressHydrationWarning className="bg-blue-100/10 text-green-500  outline outline-1 rounded-md p-1">{formatDate(props.date)}</p>
-      </div>
-
-      <div className="mt-4 grid justify-items-center">
-        <Image className='rounded-lg' src={logo} alt='' width='200' height='200'/>
-        <h1 className="font-bold px-5 pt-5 text-center text-2xl pl-5">{props.name}</h1>
-      </div>
-      <div className="grid justify-items-center">
-        <div className="flex">
-        <motion.button
-              className="outline outline-offset-2 outline-1 m-5 rounded-full hover:bg-blue-500 outline-white-500 px-10 py-3 ..."
-              whileHover={{ translateY: -10 }}
-            >
-            <Link className="font-semibold" href={"/events/" + props.id}>
-            Learn more
-          </Link>
-            </motion.button>
-        
+      
+        <div className="grid justify-items-end pr-7 pt-5">
+          <p suppressHydrationWarning className="bg-blue-100/10 text-green-500  outline outline-1 font-bold rounded-md p-1">{formatDate(props.date)}</p>
         </div>
-      </div>
+    {/* <a href={'/events/' + props.id} target="_blank"> */}
+        <div className="mt-4 grid justify-items-center">
+          <Image className='rounded-lg' src={logo} alt='' width='200' height='200'/>
+          <h1 className="font-medium px-5 pt-5 text-center text-2xl pl-5">{props.name}</h1>
+        </div>
+    
+        <div className="grid justify-items-center">
+          <div className="flex">
+          <motion.div  
+            whileHover={{ scale: 1.1 }}
+          >
+            {/* <p className="font-semibold">
+              Learn more
+            </p> */}
+            <Link href={"/events/" + props.id}><p className="text-center shadow-md outline outline-1 outline-blue-500 shadow-blue-500/50 cursor-pointer rounded-full outline outline-1 px-12 m-4 py-3 bg-blue-500 text-white">Learn more</p></Link>
+          </motion.div>
+          </div>
+        </div>
+        {/* </a> */}
     </div>
+   
   );
 };
 

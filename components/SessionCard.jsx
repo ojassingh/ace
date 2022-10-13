@@ -10,6 +10,7 @@ import { app, database } from "../firebase/config";
 import DeleteTraining from './DeleteTraining'
 import logo from '../public/logo.jpg'
 import Image from "next/image";
+import { Popover } from '@headlessui/react'
 
 const SessionCard = (props) => {
 
@@ -24,7 +25,7 @@ const SessionCard = (props) => {
                 
                 getDoc(doc(database, "usersCollection", user.uid)).then(docSnap => {
                     if (docSnap.exists()) {
-                      if(docSnap.data().memberType=='admin'){
+                      if(docSnap.data().userType=='admin'){
 
                         setDelete(
                           <DeleteTraining id={props.id}/>
@@ -48,25 +49,21 @@ const SessionCard = (props) => {
 
     return(
     <div className="drop-shadow-xl bg-white rounded-lg w-72 ...">
+      
       <div className="grid justify-items-end pr-7 pt-5">
-        <p suppressHydrationWarning className="bg-blue-100/10 text-green-500  outline outline-1 rounded-md p-1">{formatDate(props.date)}</p>
-      </div>
-
-      <div className="mt-4 grid justify-items-center">
-        <Image className='rounded-lg' src={logo} alt='' width='200' height='200'/>
-        <h1 className="font-bold px-5 pt-5 text-center text-2xl pl-5">{props.name}</h1>
-      </div>
-      <div className="grid justify-items-center">
         <div className="flex">
-          <motion.button
-            className="outline outline-offset-2 outline-1 m-5 rounded-full hover:bg-blue-500 outline-white-500 px-10 py-3 ..."
-            whileHover={{ translateY: -10 }}
-          >
-          <a target="_blank" className="font-semibold" href={props.link}>Learn more</a>
-          </motion.button>
-
+          {removeButton}
+          <p className="ml-4 bg-blue-100/10 text-green-500  outline outline-1 rounded-md p-1">{formatDate(props.date)}</p>
         </div>
       </div>
+      <a href={props.link} target="_blank">
+      <div className="mt-4 pb-4 grid justify-items-center">
+        <motion.div whileHover={{scale: 1.05}}><Image className='rounded-lg' src={logo} alt='' width='200' height='200'/></motion.div>
+        <h1 className="font-medium px-5 pt-5 text-center text-2xl pl-5">{props.name}</h1>
+        <p className="px-8 text-xs mb-3 text-red-500">General Members only!</p>
+        {/* <MyPopover/> */}
+      </div>
+      </a>
     </div>
     )
 }

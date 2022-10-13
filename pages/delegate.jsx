@@ -2,9 +2,12 @@ import Footer from "../components/Footer";
 import Navi from "../components/Navi";
 import { database} from "../firebase/config";
 import { getDocs, collection} from "firebase/firestore";
-
+import { motion } from "framer-motion";
 import SessionCard from "../components/SessionCard";
-
+import Image from 'next/image';
+import logo from '../public/logo.jpg'
+import pdf from '../public/pdf-file.png'
+import box from '../public/box.png'
 
 const delegate = ({sessions}) => {
 
@@ -12,40 +15,63 @@ const delegate = ({sessions}) => {
     
 
 
-    return(<div className="">
+    return(<div className="bg-beige">
         <Navi/>
         <div>
-        <div id="training-session-display" className="grid grid-auto-rows grid-cols-4 items-stretch gap-10 justify-items-center m-10">
+        <h1 className="px-16 font-semibold text-6xl text-black">Training Sessions</h1>
+        <div className="grid justify-items-center">
+        <div id="training-session-display" className="grid grid-auto-rows grid-auto-cols items-stretch gap-4 m-10">
 
-            {
+            {(sessionList.length > 0) &&
                 sessionList.map((session)=>{
-                    return(<div key={session.id}>
+                    return(<motion.div whileHover={{scale:1.1}}
+                    key={session.id}>
                         <SessionCard 
                             id={session.id}
                             date={session.date}
                             name={session.name}
                             link={session.qLink}
+                            gmOnly={session.gmOnly}
                         />
-                    </div>)
+                    </motion.div>)
                 })
             }
 
+            {(sessionList.length == 0) &&
+                <div className="grid justify-items-center">
+                    <Image src={box} width='100' height='100'/>
+                    <p className="mt-4 text-gray-500 text-sm">No sessions to display for now. Stay tuned for more!</p>
+                </div>
+            }
+
         </div>
-        <div className="grid grid-cols-2">
-            <h1>
-                Delegate, Cheesecake
-            </h1>
-            <p>
-                Becoming a DECA UTSC Delegate is a very valuable and enriching experience. At DECA UTSC, our goal is to ensure that you achieve the best possible experience that DECA has to offer. With numerous benefits, and various opportunities to develop your skills, we want all of you to reap the rewards and unlock your potential.
-            </p>
         </div>
-        <div className="grid grid-cols-2">
-            <p>
-                In order to become a 'delegate,' you must register as a General Member. General Memberships have many perks, and is required to gain access to DECA U Canada events/content, as well as our training sessions. Please note, you must be a student at the Scarborough campus of UofT to register for DECA UTSC. Check out our Delegate Package for more details!
-            </p>
-            <h1>
-                How?
-            </h1>
+        
+        <div>
+        <div className="mx-16 grid grid-cols-10 gap-4">
+              <div className="drop-shadow-xl col-span-5 bg-white rounded-lg">
+                <div className="p-10">
+                    <h1 className="font-semibold text-blue-500 text-5xl">Become a Delegate</h1>
+                    <br/>
+                    <p className="text-lg">Becoming a DECA UTSC Delegate is a very valuable and enriching experience. At DECA UTSC, our goal is to ensure that you achieve the best possible experience that DECA has to offer. With numerous benefits, and various opportunities to develop your skills, we want all of you to reap the rewards and unlock your potential.</p>
+                </div>
+              </div>
+              <div className="rounded-lg drop-shadow-xl bg-white col-span-5 p-10">
+                    <h1 className="text-5xl text-blue-500 font-semibold">How can you be a Delegate?</h1>
+                    <br/>
+                    <p>In order to become a 'delegate,' you must register as a General Member. General Memberships have many perks, and is required to gain access to DECA U Canada events/content, as well as our training sessions. Please note, you must be a student at the Scarborough campus of UofT to register for DECA UTSC. Check out our Delegate Package for more details!</p>
+                </div>
+        </div>
+        <div className="mx-16 mb-16 mt-10">
+              <div className="drop-shadow-xl bg-white rounded-lg">
+                <div className="grid justify-items-center p-10">
+                    <h1 className="text-center font-semibold text-blue-500 text-5xl">Our Delegate package!</h1>
+                    <br/>
+                    <a href='https://decautsc.com/delegates' target='_blank'><Image src={pdf} width='100px' height='100px'/></a>
+                    <p className="text-center font-medium">Take a look at the delegate package for all the information you need!</p>
+                </div>
+              </div>
+        </div>
         </div>
         </div>
         <Footer/>

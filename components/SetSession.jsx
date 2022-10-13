@@ -7,7 +7,7 @@ import { Timestamp } from "firebase/firestore"
 import dynamic from 'next/dynamic';
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import 'react-quill/dist/quill.snow.css';
-import { setUserProperties } from "firebase/analytics";
+import { useRouter } from "next/router";
 
 const SetSession = () => {
     const [isOpen, setIsOpen] = useState(false)
@@ -19,6 +19,7 @@ const SetSession = () => {
     
     const [gmOnly, setGmOnly] = useState(false);
     const [quest, setQuest] = useState('');
+    const router = useRouter();
 
     function closeModal() {
         setIsOpen(false)
@@ -45,8 +46,10 @@ const SetSession = () => {
             date: startDate,
             description: descr,
             qLink: link,
-            mOnly: gmOnly
+            gmOnly: gmOnly
         })
+
+        router.push('/delegate');
 
         console.log("Document written with ID: ", docRef.id);
         setLoading(false);

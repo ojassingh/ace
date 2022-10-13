@@ -77,14 +77,15 @@ const account = ({events}) => {
         });
    }
 
-    return(<div className="bg-beige">
+    return(<div className="bg-beige h-screen">
             <Navi/>
-            <div className="h-96 px-20 ">
+            <div className="px-20 ">
             <h1 className='grid grid-rows-2 text-5xl text-blue-500 font-bold'>{_.startCase(name)}'s Account</h1>
                 <div className="grid justify-items-center">
                     <div className="grid grid-cols-2 gap-3">
                         <div className="content-center">
-                            <div className=" p-10 bg-white rounded-lg drop-shadow-xl  ">
+                            <motion.div whileHover={{scale: 1.25}}
+                             className=" p-10 bg-white rounded-lg drop-shadow-xl  ">
                             {(userType==='admin') && <h1 className='font-medium text-green-400'>You are one of the admins of this website!</h1>}
                                 
                             <h1 className='font-medium text-blue-500'>Student Number: <span className='text-black'>{studentNumber}</span></h1>
@@ -92,10 +93,10 @@ const account = ({events}) => {
                             <h1 className='font-medium text-blue-500'>Member type: <span className='text-black'>{_.capitalize(memberType)}</span></h1>
           
                                 
-                            </div>
+                            </motion.div>
                         </div>
                         <div className="">
-                            <div className="p-10 bg-white rounded-lg drop-shadow-xl">
+                            <motion.div whileHover={{scale: 1.25}} className="p-10 bg-white rounded-lg drop-shadow-xl">
                             <h1 className='font-medium text-blue-500'>Here are all the events you've signed up for:</h1>
                                 <ol >
                                     {(data.length > 0) && data.map((event)=>{
@@ -103,21 +104,17 @@ const account = ({events}) => {
                                     })}
                                     {(data.length == 0) && <li>No events to display</li>}
                                 </ol>
-                            </div>
+                            </motion.div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-
-
-
-            <div className="grid justify-items-center">
+                <div className="grid justify-items-center">
                 <motion.button 
                 whileHover={{scale: 1.5}}
-                className='text-white bg-blue-500 px-10 py-3 rounded-full font-bold' onClick={signOutHandler}>
+                className='mt-32 text-white bg-blue-500 px-10 py-3 rounded-full font-bold' onClick={signOutHandler}>
                         Sign out
                 </motion.button>
+            </div>
             </div>
             <Footer/>
         </div>)

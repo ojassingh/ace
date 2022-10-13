@@ -1,15 +1,69 @@
 import Navi from "../../components/Navi";
-import styles from '../../styles/Events.module.scss';
 import { collection, getDocs, doc, getDoc} from "firebase/firestore";
 import { database } from "../../firebase/config";
 import EventCard from "../../components/eventCard";
 import Footer from "../../components/Footer";
 import Image from "next/image";
-import spiderman from '../../public/spiderman.jpeg'
 import logo from '../../public/logo.jpg'
 import CarouselComp from '../../components/CarouselComp'
-
+import { motion } from "framer-motion";
+import box from '../../public/box.png'
+import { ref, getDownloadURL } from "firebase/storage";
+import { storage } from '../../firebase/config';
+import { useState, useEffect } from "react";
+import Link from "next/link";
 const events = ({events}) => {
+
+    const [pic1, setPic1] = useState('')
+    const [pic2, setPic2] = useState('')
+
+    useEffect(()=>{
+        // const storage = getStorage();
+        getDownloadURL(ref(storage, 'images/pic9.JPG'))
+        .then((url) => {
+            // `url` is the download URL for 'images/stars.jpg'
+
+            // This can be downloaded directly:
+            const xhr = new XMLHttpRequest();
+            xhr.responseType = 'blob';
+            xhr.onload = (event) => {
+            const blob = xhr.response;
+            };
+            xhr.open('GET', url);
+            xhr.send();
+
+            // Or inserted into an <img> element
+            // const img = document.getElementById('myimg');
+            // img.setAttribute('src', url);
+            // img.style.width = '798.0px';
+            // img.style.height = '300.0px';
+            setPic1(url);
+            // console.log(url);
+        })
+        .catch((error) => {
+            // Handle any errors
+        });
+
+        getDownloadURL(ref(storage, 'images/pic1.JPG'))
+        .then((url) => {
+            // `url` is the download URL for 'images/stars.jpg'
+
+            // This can be downloaded directly:
+            const xhr = new XMLHttpRequest();
+            xhr.responseType = 'blob';
+            xhr.onload = (event) => {
+            const blob = xhr.response;
+            };
+            xhr.open('GET', url);
+            xhr.send();
+
+            setPic2(url);
+            // console.log(url);
+        })
+        .catch((error) => {
+            // Handle any errors
+        });
+    }, [])
 
     const eventList = JSON.parse(events);
 
@@ -18,67 +72,68 @@ const events = ({events}) => {
         <h1 className="ml-4 px-16 font-semibold text-6xl text-black">Events</h1>
         <div className="grid justify-items-center">
           <div className="grid grid-auto-rows grid-cols-3 justify-items-center gap-10 m-10">
-                {
+                {(eventList.length > 0) && 
                     eventList.map((event)=>{
-                        return(<div key={event.id}>
+                        return(<motion.div whileHover={{scale: 1.15}} key={event.id}>
                             <EventCard 
                                 id={event.id}
                                 name={event.name}
                                 date={event.date}
                             />
-                        </div>)
+                        </motion.div>)
                     })
                 }
+
+                {(eventList.length == 0) && <div className="grid justify-items-center">
+                    <Image src={box} width='100' height='100'/>
+                    <p className="text-gray-500 text-sm">No events to display for now. Stay tuned for more!</p>
+                </div>}
           </div>
         </div>
         <br/>
         <div>
-        <div className="drop-shadow-xl mx-16 grid grid-cols-10 gap-4">
-              <div className="col-span-6 bg-white rounded-md">
-                <div className=" ml-4 p-10">
-                    <h1 className="font-semibold text-blue-500 text-5xl">Nationals</h1>
-                    <br/>
-                    <p className="text-lg">DECA U Nationals (formerly Provincials) is an annual 3-day undergraduate conference packed with competition, networking opportunities, and connections with thousands of other post-secondary students from 21 other universities across the province. With a broad range of competition categories from marketing to finance to consulting, there will be something that will fit everyone’s interests.
 
-                    The much celebrated conference, which takes place every January at the Sheraton Hotel, leaves delegates with unforgettable experiences and relationships that will last a lifetime. Please note that DECA U Membership is mandatory in order to be eligible to attend Nationals. Sign up for membership starts September and lasts until October. Visit us at our booth or online to register for membership. Information regarding booth hours will be posted on our Facebook page.</p>
-                </div>
-              </div>
+        <div className='-mt-14 px-16 py-10 grid justify-items-center'>
+            <motion.div whileHover={{scale: 1.1}}
+                             className="ml-4 bg-white px-20 py-10 bg-white rounded-lg drop-shadow-xl grid justify-items-center">
 
-              <div className="col-span-4 bg-white rounded-md">
-                <div className="ml-4 p-10">
-                      <Image 
-                        src={logo}
-                        alt=''
-                        className="object-cover"
-                        // height='64'
-                        // width='64'
-                      />
-                </div>
-              </div>
-            </div>
+            <h1 className="align-center font-semibold text-blue-500 text-5xl">Nationals</h1>                
+            <h1 className='mt-3 font-medium text-green-400'>Compete for glory!</h1>    
+            <p className="mt-3 text-lg">
+            DECA U Nationals (formerly Provincials) is an annual 3-day undergraduate conference packed with competition, networking opportunities, and connections with thousands of other post-secondary students from 21 other universities across the province. With a broad range of competition categories from marketing to finance to consulting, there will be something that will fit everyone’s interests.
 
-            <div className="drop-shadow-xl h-96 mt-12 mx-16 grid grid-cols-10 gap-4">
-              <div className="col-span-6 bg-white rounded-md">
-                <div className="agrid place-content-center ml-4 p-10">
-                      <Image 
-                      className="object-cover"
-                        src={logo}
-                        alt=''
-                        height='200'
-                        width='200'
-                      />
-                </div>
-                {/* <CarouselComp/> */}
-              </div>
+            The much celebrated conference, which takes place every January at the Sheraton Hotel, leaves delegates with unforgettable experiences and relationships that will last a lifetime. Please note that DECA U Membership is mandatory in order to be eligible to attend Nationals. Sign up for membership starts September and lasts until October. Visit us at our booth or online to register for membership. Information regarding booth hours will be posted on our Facebook page.
+            </p>
+            </motion.div>
+            
+        </div>
 
-              <div className="col-span-4 bg-white rounded-md">
-                <div className="ml-4 p-10">
-                    <h1 className="text-5xl text-blue-500 font-semibold">Apricity</h1>
-                    <br/>
-                    <p>Apricity (formerly Chapter Invitational) is an independent DECA conference held by individual schools (ie. Waterloo, Queen’s, Ryerson), which are not tied to DECA U Nationals. They are held throughout the year, and students from other universities are welcome to attend. Registration details for these invitationals will be provided as we approach conference dates.</p>
-                </div>
-              </div>
-            </div>
+        <div className="grid justify-items-center">
+          <div className="flex gap-4">
+            <motion.img src={pic1} whileHover={{scale: 1.1}}
+                                className="w-140 ml-8 bg-white bg-white rounded-lg drop-shadow-xl">
+            </motion.img>
+
+            <motion.img src={pic2} whileHover={{scale: 1.1}}
+                              className="h-120 ml-4 bg-white bg-white rounded-lg drop-shadow-xl flex">
+              </motion.img>
+          </div>
+        </div>
+
+        <div className='px-16 mt-10 grid justify-items-center'>
+            
+            <motion.div whileHover={{scale: 1.2}}
+                             className="w-150 ml-8 bg-white p-10 bg-white rounded-lg drop-shadow-xl mb-12">
+                             {/* <div className="m-auto"> */}
+                              <div className="grid justify-content-center">
+                                <h1 className="text-center text-5xl text-blue-500 font-semibold">Apricity</h1>
+                              </div>
+                                <p className="mt-3 text-lg">
+                                  Apricity (formerly Chapter Invitational) is an independent DECA conference held by individual schools (ie. Waterloo, Queen’s, Ryerson), which are not tied to DECA U Nationals. They are held throughout the year, and students from other universities are welcome to attend. Registration details for these invitationals will be provided as we approach conference dates.
+                                </p>
+                             {/* </div> */}
+            </motion.div>
+        </div>
         </div>
         <Footer/>
     </div>);

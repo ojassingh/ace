@@ -7,14 +7,15 @@ import { database } from "../firebase/config";
 import { getDoc, doc } from "firebase/firestore";
 import { MyModal } from "./AdminControls";
 import { Avatar } from "flowbite-react";
-import duckie from '../public/chicken.png'
+import logo from '../public/logo-white.jpg'
+import Image from 'next/image'
 const Navi = () => {
 
     const [session, setSession] = useState(false);
 
     const auth = getAuth(app);
 
-    const [button, setButton] = useState(<Link href='/signup' className="nav-link">[Sign up]</Link>);
+    const [button, setButton] = useState(<Link href='/signup'><p className="cursor-pointer nav-link mt-3">[Sign up]</p></Link>);
 
     const [admin, setAdmin] = useState(null);
 
@@ -49,23 +50,27 @@ const Navi = () => {
 
      
     return(
-        <div className='bg-beige'>
+        <div className='w-full bg-beige'>
         <div className="nav-bar flex pl-4">
-            <div  className="nav-brand w-1/2 py-5 pl-10"><Link href='/'>[ACE UTSC LOGO]</Link></div> 
+            <div  className="nav-brand w-1/2 py-5 pl-10">
+                <div className="flex">
+                <a href='/'>
+                    <Image className="rounded-full" src={logo} width='70px' height='70px'/></a>
+                    {session && admin}
+                </div>
+            </div> 
             <div className="py-50 w-1/2">
-                <ul className="nav-nav flex">
+                <ul className="nav-nav flex mt-4">
+                    
                     <li className="nav-list py-5 pl-12"><Link className="nav-link" href="/">[Home]</Link></li>
                     <li className="nav-list py-5 pl-12"><Link className="nav-link" href="/about">[About]</Link></li>
                     <li className="nav-list py-5 pl-12"><Link className="nav-link" href="/events">[Events]</Link></li>
                     <li className="nav-list py-5 pl-12"><Link className="nav-link" href="/delegate">[Delegate]</Link></li>
                     <li className="nav-list py-5 pl-12"><Link className="nav-link" href="/contact">[Contact]</Link></li>
-                    <li className="nav-list py-5 pl-12">{button}</li>
+                    <li className="nav-list py-2 pl-12">{button}</li>
                 </ul>
             </div>
         </div>
-        {session && <div className="grid justify-items-end">
-            {admin}
-        </div>}
 </div>);
 }
 

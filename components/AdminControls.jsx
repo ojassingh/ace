@@ -25,7 +25,7 @@ export function MyModal() {
           <button
             type="button"
             onClick={openModal}
-            className="text-green-500 inline-block rounded-md bg-gray-900 mr-10 px-5 py-3 text-md font-medium text-green-400 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+            className="mt-2 text-blue-500 font-semibold rounded-md bg-gray-900/10 mr-10 px-5 py-3 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
           >
             Admin Controls
           </button>

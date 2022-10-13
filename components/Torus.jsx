@@ -17,7 +17,7 @@ const Torus = () => {
         linear>
         <ambientLight intensity={0.65}/>
         <directionalLight intensity={0.7} position={[5, 4, 10]} />
-        <color attach="background" args={[0xfefffe]} />
+        <color attach="background" args={[0xFCFCFC]} />
         <motion.group 
         animate={{
             rotateX: 3.14*2,
