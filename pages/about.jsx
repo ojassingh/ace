@@ -33,20 +33,6 @@ function AboutPage(){
     const [pic20, setPic20] = useState('');
 
 
-    //ASSOCIATES
-    const [pic21, setPic21] = useState('');
-    const [pic22, setPic22] = useState('');
-    const [pic23, setPic23] = useState('');
-    const [pic24, setPic24] = useState('');
-    const [pic25, setPic25] = useState('');
-    const [pic26, setPic26] = useState('');
-    const [pic27, setPic27] = useState('');
-    const [pic28, setPic28] = useState('');
-    const [pic29, setPic29] = useState('');
-    const [pic30, setPic30] = useState('');
-    const [pic31, setPic31] = useState('');
-    const [pic32, setPic32] = useState('');
-    const [pic33, setPic33] = useState('');
 
 
     const seniors = [
@@ -464,55 +450,6 @@ function AboutPage(){
             xhr.send();
             setPic19(url);
         })
-
-
-        //
-
-        // getDownloadURL(ref(storage, 'images/pic10.jpg'))
-        // .then((url) => {
-        //     // `url` is the download URL for 'images/stars.jpg'
-
-        //     // This can be downloaded directly:
-        //     const xhr = new XMLHttpRequest();
-        //     xhr.responseType = 'blob';
-        //     xhr.onload = (event) => {
-        //     const blob = xhr.response;
-        //     };
-        //     xhr.open('GET', url);
-        //     xhr.send();
-        //     setPic20(url);
-        // })
-
-        // getDownloadURL(ref(storage, 'images/pic10.jpg'))
-        // .then((url) => {
-        //     // `url` is the download URL for 'images/stars.jpg'
-
-        //     // This can be downloaded directly:
-        //     const xhr = new XMLHttpRequest();
-        //     xhr.responseType = 'blob';
-        //     xhr.onload = (event) => {
-        //     const blob = xhr.response;
-        //     };
-        //     xhr.open('GET', url);
-        //     xhr.send();
-        //     setPic21(url);
-        // })
-
-        // getDownloadURL(ref(storage, 'images/pic10.jpg'))
-        // .then((url) => {
-        //     // `url` is the download URL for 'images/stars.jpg'
-
-        //     // This can be downloaded directly:
-        //     const xhr = new XMLHttpRequest();
-        //     xhr.responseType = 'blob';
-        //     xhr.onload = (event) => {
-        //     const blob = xhr.response;
-        //     };
-        //     xhr.open('GET', url);
-        //     xhr.send();
-        //     setPic22(url);
-        // })
-
         .catch((error) => {
             // Handle any errors
         });
