@@ -110,9 +110,9 @@ const delegate = ({sessions}) => {
                 </div>
               </div>
               <div className="rounded-lg drop-shadow-xl bg-white col-span-5 p-10">
-                    <h1 className="text-5xl text-blue-500 font-semibold">How can you be a Delegate?</h1>
+                    <h1 className="text-5xl text-blue-500 font-semibold">How can I delegate?</h1>
                     <br/>
-                    <p>In order to become a 'delegate,' you must register as a General Member. General Memberships have many perks, and is required to gain access to DECA U Canada events/content, as well as our training sessions. Please note, you must be a student at the Scarborough campus of UofT to register for DECA UTSC. Check out our Delegate Package for more details!</p>
+                    <p className="text-lg">In order to become a 'delegate,' you must register as a General Member. General Memberships have many perks, and is required to gain access to DECA U Canada events/content, as well as our training sessions. Please note, you must be a student at the Scarborough campus of UofT to register for DECA UTSC. Check out our Delegate Package for more details!</p>
                 </div>
         </div>
         <div className="mx-16 mb-16 mt-10">
