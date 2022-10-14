@@ -5,15 +5,68 @@ import { getDocs, collection} from "firebase/firestore";
 import { motion } from "framer-motion";
 import SessionCard from "../components/SessionCard";
 import Image from 'next/image';
-import logo from '../public/logo.jpg'
 import pdf from '../public/pdf-file.png'
 import box from '../public/box.png'
+import { ref, getDownloadURL } from "firebase/storage";
+import { storage } from '../firebase/config';
+import { useState, useEffect} from "react";
 
 const delegate = ({sessions}) => {
 
-    const sessionList = JSON.parse(sessions);
-    
+    const [link, setLink] = useState('');
 
+    useEffect(()=>{
+        // const storage = getStorage();
+        getDownloadURL(ref(storage, 'Delegate_Package.pdf'))
+        .then((url) => {
+            // `url` is the download URL for 'images/stars.jpg'
+
+            // This can be downloaded directly:
+            const xhr = new XMLHttpRequest();
+            xhr.responseType = 'blob';
+            xhr.onload = (event) => {
+            const blob = xhr.response;
+            };
+            xhr.open('GET', url);
+            xhr.send();
+
+            setLink(url);
+
+            // // Or inserted into an <img> element
+            // const img = document.getElementById('myimg');
+            // img.setAttribute('src', url);
+            // img.style.width = '100px';
+            // img.style.height = '100px';
+        })
+        .catch((error) => {
+            // Handle any errors
+        });
+
+        getDownloadURL(ref(storage, 'images/young-businesswoman-with-rocket.png'))
+        .then((url) => {
+            // `url` is the download URL for 'images/stars.jpg'
+
+            // This can be downloaded directly:
+            const xhr = new XMLHttpRequest();
+            xhr.responseType = 'blob';
+            xhr.onload = (event) => {
+            const blob = xhr.response;
+            };
+            xhr.open('GET', url);
+            xhr.send();
+
+            // Or inserted into an <img> element
+            const img = document.getElementById('myimg2');
+            img.setAttribute('src', url);
+            img.style.width = '532px';
+            img.style.height = '532px';
+        })
+        .catch((error) => {
+            // Handle any errors
+        });
+    }, [])
+
+    const sessionList = JSON.parse(sessions);
 
     return(<div className="bg-beige">
         <Navi/>
@@ -67,7 +120,7 @@ const delegate = ({sessions}) => {
                 <div className="grid justify-items-center p-10">
                     <h1 className="text-center font-semibold text-blue-500 text-5xl">Our Delegate package!</h1>
                     <br/>
-                    <a href='https://decautsc.com/delegates' target='_blank'><Image src={pdf} width='100px' height='100px'/></a>
+                    <a href={link} target='_blank'><Image src={pdf} width='100px' height='100px'/></a>
                     <p className="text-center font-medium">Take a look at the delegate package for all the information you need!</p>
                 </div>
               </div>

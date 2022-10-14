@@ -32,10 +32,10 @@ const contact = () => {
         });
     }
 
-    return(<div>
+    return(<div className='bg-beige'>
         <Navi/>
-        <div className={styles.container}>
-            <div className="font-inter relative flex items-top justify-center h-screen bg-white dark:bg-gray-900 sm:items-center sm:pt-0">
+        <div className='mt-28'>
+            <div className="font-inter justify-center h-screen bg-white dark:bg-gray-900 sm:items-center sm:pt-0">
                 <div className="max-w-6xl mx-auto sm:px-6 lg:px-8">
                     <div className=" overflow-hidden">
                         <div className="grid grid-cols-1 md:grid-cols-2">
@@ -92,8 +92,11 @@ const contact = () => {
                     </div>
                 </div>
             </div>
+            <div className='-mt-36'>
+                <Footer/>
+            </div>
         </div>
-        <Footer/>
+        
     </div>);
 }   
 

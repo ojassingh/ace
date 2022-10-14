@@ -19,7 +19,7 @@ const events = ({events}) => {
 
     useEffect(()=>{
         // const storage = getStorage();
-        getDownloadURL(ref(storage, 'images/pic9.JPG'))
+        getDownloadURL(ref(storage, 'images/pic11.JPG'))
         .then((url) => {
             // `url` is the download URL for 'images/stars.jpg'
 
@@ -44,7 +44,7 @@ const events = ({events}) => {
             // Handle any errors
         });
 
-        getDownloadURL(ref(storage, 'images/pic1.JPG'))
+        getDownloadURL(ref(storage, 'images/pic19.jpg'))
         .then((url) => {
             // `url` is the download URL for 'images/stars.jpg'
 
@@ -93,25 +93,11 @@ const events = ({events}) => {
         <br/>
         <div>
 
-        <div className='-mt-14 px-16 py-10 grid justify-items-center'>
-            <motion.div whileHover={{scale: 1.1}}
-                             className="ml-4 bg-white px-20 py-10 bg-white rounded-lg drop-shadow-xl grid justify-items-center">
-
-            <h1 className="align-center font-semibold text-blue-500 text-5xl">Nationals</h1>                
-            <h1 className='mt-3 font-medium text-green-400'>Compete for glory!</h1>    
-            <p className="mt-3 text-lg">
-            DECA U Nationals (formerly Provincials) is an annual 3-day undergraduate conference packed with competition, networking opportunities, and connections with thousands of other post-secondary students from 21 other universities across the province. With a broad range of competition categories from marketing to finance to consulting, there will be something that will fit everyone’s interests.
-
-            The much celebrated conference, which takes place every January at the Sheraton Hotel, leaves delegates with unforgettable experiences and relationships that will last a lifetime. Please note that DECA U Membership is mandatory in order to be eligible to attend Nationals. Sign up for membership starts September and lasts until October. Visit us at our booth or online to register for membership. Information regarding booth hours will be posted on our Facebook page.
-            </p>
-            </motion.div>
-            
-        </div>
 
         <div className="grid justify-items-center">
           <div className="flex gap-4">
             <motion.img src={pic1} whileHover={{scale: 1.1}}
-                                className="w-140 ml-8 bg-white bg-white rounded-lg drop-shadow-xl">
+                                className="h-120 ml-8 bg-white bg-white rounded-lg drop-shadow-xl">
             </motion.img>
 
             <motion.img src={pic2} whileHover={{scale: 1.1}}
@@ -120,7 +106,22 @@ const events = ({events}) => {
           </div>
         </div>
 
-        <div className='px-16 mt-10 grid justify-items-center'>
+        <div className=' px-16 py-10 grid justify-items-center'>
+            <motion.div whileHover={{scale: 1.1}}
+                             className="ml-4 bg-white px-20 py-10 bg-white rounded-lg drop-shadow-xl grid justify-items-center">
+
+            <h1 className="align-center font-semibold text-blue-500 text-5xl">Nationals</h1>                
+            <h1 className='mt-3 font-medium text-green-400'>Compete for glory!</h1>    
+            <p className="mt-3 text-lg">
+            ACE Nationals (formerly Provincials) is an annual 3-day undergraduate conference packed with competition, networking opportunities, and connections with thousands of other post-secondary students from 21 other universities across the province. With a broad range of competition categories from marketing to finance to consulting, there will be something that will fit everyone’s interests.
+
+            The much celebrated conference, which takes place every January at the Sheraton Hotel, leaves delegates with unforgettable experiences and relationships that will last a lifetime. Please note that ACE Membership is mandatory in order to be eligible to attend Nationals. Sign up for membership starts September and lasts until October. Visit us at our booth or online to register for membership. Information regarding booth hours will be posted on our Facebook page.
+            </p>
+            </motion.div>
+            
+        </div>
+
+        <div className='px-16 grid justify-items-center'>
             
             <motion.div whileHover={{scale: 1.2}}
                              className="w-150 ml-8 bg-white p-10 bg-white rounded-lg drop-shadow-xl mb-12">
@@ -129,7 +130,7 @@ const events = ({events}) => {
                                 <h1 className="text-center text-5xl text-blue-500 font-semibold">Apricity</h1>
                               </div>
                                 <p className="mt-3 text-lg">
-                                  Apricity (formerly Chapter Invitational) is an independent DECA conference held by individual schools (ie. Waterloo, Queen’s, Ryerson), which are not tied to DECA U Nationals. They are held throughout the year, and students from other universities are welcome to attend. Registration details for these invitationals will be provided as we approach conference dates.
+                                  Apricity (formerly Chapter Invitational) is an independent ACE conference held by individual schools (ie. Waterloo, Queen’s, Ryerson), which are not tied to ACE Nationals. They are held throughout the year, and students from other universities are welcome to attend. Registration details for these invitationals will be provided as we approach conference dates.
                                 </p>
                              {/* </div> */}
             </motion.div>

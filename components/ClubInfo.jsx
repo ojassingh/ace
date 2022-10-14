@@ -67,7 +67,7 @@ const [pic2, setPic2] = useState('')
                              className="w-150 h-72 mt-24 ml-4 bg-white p-10 bg-white rounded-lg drop-shadow-xl flex ">
                              <div className="m-auto">
                                 <h1 className='leading-tight text-4xl font-semibold text-black'>Join one of the most lucrative clubs at the University of Toronto.</h1>
-                                <h1 className='mt-3 font-medium text-green-400'>We would love to have you in our team!</h1>    
+                                <h1 className='flex mt-3 font-medium text-green-400'>We would love to have you in our team! Learn more <Link href='/aboutus'><p  className='mx-1 cursor-pointer underline'>about us!</p></Link></h1>    
                                 <p className="mt-3 text-lg">
                                     We strive to assist and support our delegate base to succeed in future opportunities by building their communication, critical thinking and networking skills.
                                 </p>

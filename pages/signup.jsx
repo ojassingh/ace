@@ -11,12 +11,29 @@ import Footer from '../components/Footer';
 import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from '../firebase/config';
 import { Spinner } from 'flowbite-react';
+import { onAuthStateChanged } from 'firebase/auth';
 
 const signup = () => {
 
+    const auth = getAuth(app);
+    const router = useRouter();
+
+    useEffect(()=>{
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const uid = user.uid;
+                router.push('/account');
+                // alert("You are already logged in.");
+            } else {
+                console.log('No one is logged in')
+            }
+        });
+    }, [])
+
+
     useEffect(()=>{
         // const storage = getStorage();
-        getDownloadURL(ref(storage, 'images/logo-white.jpg'))
+        getDownloadURL(ref(storage, 'Delegate_Package.pdf'))
         .then((url) => {
             // `url` is the download URL for 'images/stars.jpg'
 
@@ -63,6 +80,8 @@ const signup = () => {
         });
     }, [])
 
+
+
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [studentNumber, setNumber] = useState('');
@@ -70,7 +89,6 @@ const signup = () => {
     const [loading, setLoading] = useState(false);
     const [memberType, setMember] = useState('regular'); //regular members or general members
     const [userType, setUser] = useState('guest'); // admins or guests
-    const router = useRouter();
 
 
     const signInHandler = (email, password, studentNumber, name) =>{

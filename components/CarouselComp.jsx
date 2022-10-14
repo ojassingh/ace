@@ -1,13 +1,17 @@
 import { Carousel } from "flowbite-react";
-import logo from '../public/logo-white.jpg'
-import { useEffect} from "react";
+import { useEffect, useState} from "react";
 import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from "firebase/storage";
 const CarouselComp = () => {
 
+    const [pic1, setPic1] = useState('');
+    const [pic2, setPic2] = useState('');
+    const [pic3, setPic3] = useState('');
+    const [pic4, setPic4] = useState('');
+
     useEffect(()=>{
         // const storage = getStorage();
-        getDownloadURL(ref(storage, 'images/pic1.JPG'))
+        getDownloadURL(ref(storage, 'images/pic17.jpg'))
         .then((url) => {
             // `url` is the download URL for 'images/stars.jpg'
 
@@ -20,17 +24,13 @@ const CarouselComp = () => {
             xhr.open('GET', url);
             xhr.send();
 
-            // Or inserted into an <img> element
-            const img = document.getElementById('myimg');
-            img.setAttribute('src', url);
-            img.style.width = '1080px';
-            img.style.height = '720px';
+            setPic1(url);
         })
         .catch((error) => {
             // Handle any errors
         });
 
-        getDownloadURL(ref(storage, 'images/pic7.JPG'))
+        getDownloadURL(ref(storage, 'images/pic21.jpg'))
         .then((url) => {
             // `url` is the download URL for 'images/stars.jpg'
 
@@ -43,11 +43,7 @@ const CarouselComp = () => {
             xhr.open('GET', url);
             xhr.send();
 
-            // Or inserted into an <img> element
-            const img = document.getElementById('myimg2');
-            img.setAttribute('src', url);
-            img.style.width = '1080px';
-            img.style.height = '720px';
+            setPic2(url);
         })
 
         getDownloadURL(ref(storage, 'images/pic10.JPG'))
@@ -62,15 +58,10 @@ const CarouselComp = () => {
             };
             xhr.open('GET', url);
             xhr.send();
-
-            // Or inserted into an <img> element
-            const img = document.getElementById('myimg3');
-            img.setAttribute('src', url);
-            img.style.width = '1080px';
-            img.style.height = '720px';
+            setPic3(url);
         })
 
-        getDownloadURL(ref(storage, 'images/pic17.jpg'))
+        getDownloadURL(ref(storage, 'images/pic4.png'))
         .then((url) => {
             // `url` is the download URL for 'images/stars.jpg'
 
@@ -82,12 +73,7 @@ const CarouselComp = () => {
             };
             xhr.open('GET', url);
             xhr.send();
-
-            // Or inserted into an <img> element
-            const img = document.getElementById('myimg4');
-            img.setAttribute('src', url);
-            img.style.width = '1080px';
-            img.style.height = '720px';
+            setPic4(url);
         })
 
         .catch((error) => {
@@ -104,28 +90,28 @@ const CarouselComp = () => {
                 id="myimg"
                 // width='5184'
                 // height='3456'
-                src={logo}
+                src={pic1}
                 alt="..."
                 />
                 <img
                 id="myimg2"
                 // width='5184'
                 // height='3456'
-                src={logo}
+                src={pic2}
                 alt="..."
                 />
                 <img
                 id="myimg3"
                 // width='5184'
                 // height='3456'
-                src={logo}
+                src={pic3}
                 alt="..."
                 />
                 <img
                 id="myimg4"
                 // width='5184'
                 // height='3456'
-                src={logo}
+                src={pic4}
                 alt="..."
                 />
                 {/* <img

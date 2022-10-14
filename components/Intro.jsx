@@ -28,7 +28,7 @@ export default function Intro() {
               </motion.div>
               
             </div>  
-            <p className='text-xl font-normal'>DECA UTSC is a student-led club, built to improve career centric skills amongst undergraduates. Join us. Emerge a leader.</p>
+            <p className='text-xl font-normal'>ACE UTSC (formerly "DECA")  is a student-led club, built to improve career centric skills amongst undergraduates. Join us. Emerge a leader.</p>
             </div>
             <div>
               <Torus/>
