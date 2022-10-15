@@ -25,6 +25,20 @@ const SetEvent = (props) => {
     const [loading, setLoading] = useState(false);
     const [gmOnly, setGmOnly] = useState(false);
     const [quest, setQuest] = useState('');
+    // const [free, setFree] = useState(false);
+
+
+    // function isValid(price, free){
+    //   if(price==0 && free){
+    //     return true
+    //   }
+    //   else if(free==false && price!=0){
+    //     return true
+    //   }
+    //  else{
+    //     return false
+    //  }
+    // }
 
     // const[value, setValue] = useState(initialValue);
 
@@ -55,13 +69,13 @@ const SetEvent = (props) => {
             date: startDate,
             finalDate: finalDate,
             deadline: dead,
-            // location: location,
             price: price,
             gMPrice: gMPrice,
             description: descr,
             location: loc,
             gmOnly: gmOnly,
-            registered: []
+            registered: [],
+            // isFree: free
         })
 
         console.log("Document written with ID: ", docRef.id);
@@ -182,10 +196,28 @@ const SetEvent = (props) => {
                             />
                         </div>
 
-                    <div className="grid grid-cols-2">
-                        
+                    {/* <div className="pt-4 pb-2">
+                        <div className="flex">
+                        <label htmlFor="link-checkbox" className="ml-2 text-sm font-medium text-blue-500">Select if this event is free of charge.</label>
+                        <input id="link-checkbox" type="checkbox" className=" ml-2 w-4 h-4 text-blue-600 bg-gray-100 rounded-lg border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" checked={free===true}
+                            onClick={()=>setFree(!free)}
+                        />
+                        </div>
+                    </div> */}
 
-                        {!gmOnly && <div>
+                    <div className="pt-4 pb-2">
+                        <div className="flex">
+                        <label htmlFor="link-checkbox" className="ml-2 text-sm font-medium text-blue-500">Just a General Member event?</label>
+                        <input id="link-checkbox" type="checkbox" value="" className=" ml-2 w-4 h-4 text-blue-600 bg-gray-100 rounded-lg border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                            // value={gmOnly}
+                            onClick={()=>setGmOnly(!gmOnly)}
+                        />
+                        </div>
+                    </div>
+                        
+                    <div className="grid grid-cols-2">
+
+                        {(!gmOnly) && <div>
                             <p className="mt-3 text-sm text-gray-500">Price for non-general members</p>
                             <input
                                 className="mt-2 inline-flex rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
@@ -196,7 +228,7 @@ const SetEvent = (props) => {
                             />
                         </div>}
 
-                        <div>
+                        {<div>
                             <p className="mt-3 text-sm text-gray-500">Price for general members / exclusive members</p>
                             <input
                                 className="mt-2 inline-flex rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
@@ -205,7 +237,7 @@ const SetEvent = (props) => {
                                 placeholder="Input number only"
                                 onChange={(e)=>setGMPrice(e.target.value)}
                             />
-                        </div>
+                        </div>}
                         <div>
                             <p className="mt-3 text-sm text-gray-500">Location</p>
                             <input
@@ -322,15 +354,7 @@ const SetEvent = (props) => {
 
                     {/* <button onClick={()=>console.log(descr)}>fuck yeah</button> */}
 
-                    <div className="pt-4 pb-2 grid justify-items-end">
-                        <div className="flex">
-                        <label htmlFor="link-checkbox" className="ml-2 text-sm font-medium text-blue-500">Just a General Member event?</label>
-                        <input id="link-checkbox" type="checkbox" value="" className=" ml-2 w-4 h-4 text-blue-600 bg-gray-100 rounded-lg border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                            // value={gmOnly}
-                            onClick={()=>setGmOnly(!gmOnly)}
-                        />
-                        </div>
-                    </div>
+                    
 
                     <div className="mt-4 grid justify-items-end">
         
@@ -340,7 +364,9 @@ const SetEvent = (props) => {
 
                     </div>
 
-                    
+                    {/* {(isValid(price, free) && isValid(gMPrice, free)) && <div>
+                          <p className="font-semibold text-sm text-red-500">!!Please check the box is the price is 0!!</p>
+                      </div>} */}
   
                     <div className="mt-4 gap-2 grid grid-cols-2">
 

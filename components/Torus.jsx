@@ -9,7 +9,7 @@ const Torus = () => {
         value = window.devicePixelRatio;
     }
     const myMesh = useRef();
-    return(<div className='h-128 bg-beige'>
+    return(<div className='h-128 w-150 bg-beige'>
         <Canvas
         dpr={value}
         gl={{antialias:true}}

@@ -60,7 +60,7 @@ const Navi = () => {
                 </div>
             </div> 
             <div className="py-50 w-1/2">
-                <ul className="nav-nav flex mt-4">
+                <ul className="nav-nav flex flex-wrap mt-4">
                     
                     <li className="nav-list py-5 pl-12"><Link className="nav-link" href="/">[Home]</Link></li>
                     <li className="nav-list py-5 pl-12"><Link className="nav-link" href="/about">[About]</Link></li>

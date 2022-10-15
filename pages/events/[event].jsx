@@ -19,6 +19,8 @@ import { app } from '../../firebase/config'
 import { getAuth } from "@firebase/auth";
 import UpdateEvent from "../../components/UpdateEvent";
 import DeleteEvent from "../../components/DeleteEvent";
+import EventRegistration from "../../components/EventRegistration";
+import AlreadyRegistered from "../../components/AlreadyRegistered";
 
 const event = ({data, eventID}) => {
   
@@ -29,21 +31,29 @@ const event = ({data, eventID}) => {
   // const [admin, setAdmin] = useState(null);
   const [button, setButton] = useState(null);
   const [removeButton, setDelete] = useState(null);
+  const [user, setUser] = useState('');
 
   const formatDate = (date) => {
     const date1 = new Timestamp(date.seconds, date.nanoseconds).toDate().toString();
     return date1.substring(0,25);
   }
 
+
+  const [alrRegistered, setRegistered] = useState(false);
   
 
     useEffect(()=>{
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 const uid = user.uid;
-                
                 getDoc(doc(database, "usersCollection", user.uid)).then(docSnap => {
                     if (docSnap.exists()) {
+                      docSnap.data().registeredEvents.map((event)=>{
+                        if(event == eventID){
+                          setRegistered(true);
+                        }
+                    })
+
                       if(docSnap.data().userType=='admin'){
                         
                         setButton(<UpdateEvent
@@ -60,6 +70,8 @@ const event = ({data, eventID}) => {
                             description={event.description}
                             location={event.location}
                             gmOnly={event.gmOnly}
+                            registered={event.registered}
+                            // isFree={event.isFree}
                         />)
 
                         setDelete(
@@ -89,8 +101,10 @@ const event = ({data, eventID}) => {
 
             <div id="info-col" className="rounded-md text-xl mt-5 py-5 text-black">
                 <div className="drop-shadow-lg rounded-lg bg-blue-100/70 grid grid-cols-2">
-                  <div className="drop-shadow-md mb-10 mt-10 grid content-center">
-                    <PreviewPage name={event.name} price={event.price} gMPrice={event.gMPrice} gmOnly={event.gmOnly}/>
+                  <div className="drop-shadow-md mb-10 mt-10 grid justify-items-center">
+                    {(!alrRegistered && event.gMPrice!=0) && <PreviewPage name={event.name} price={event.price} gMPrice={event.gMPrice} gmOnly={event.gmOnly}/>}
+                    {(!alrRegistered && event.gMPrice==0) && <EventRegistration eventID={eventID} event={event}/>}
+                    {alrRegistered && <AlreadyRegistered name={event.name}/>}
                   </div>
 
                   <ul className="mt-5 ml-3 pt-8 px-8">
@@ -99,7 +113,7 @@ const event = ({data, eventID}) => {
                       <li className="mb-2 font-medium"><span className="text-blue-600  font-semibold mr-2">Event ends: </span> {formatDate(event.finalDate)}</li>
                       <li className="mb-2 font-medium"><span className="text-red-500  font-semibold mr-2">Deadline to register:</span> {formatDate(event.deadline)}</li>
                       <li className="mb-2 font-medium"><span className="text-blue-600  font-semibold mr-2">General member price:</span> ${event.gMPrice.toString()}</li>
-                      {!event.gmOnly && <li className="mb-2 font-medium"><span className="text-blue-600  font-semibold mr-2">Price:</span> ${event.price.toString()}</li>}
+                      {(!event.gmOnly) && <li className="mb-2 font-medium"><span className="text-blue-600  font-semibold mr-2">Regular member price:</span> ${event.price.toString()}</li>}
                       <li className="mb-2 flex font-medium"><span className="text-blue-600 font-semibold mr-2">📍 Location: </span> {event.location}</li>
                   </ul>
                   
@@ -232,7 +246,7 @@ const event = ({data, eventID}) => {
             
           </div>
           
-          <CarouselComp/>
+          {/* <CarouselComp/> */}
         </div>
         <div className="mt-20">
           <Contact/>

@@ -62,7 +62,7 @@ const [pic2, setPic2] = useState('')
 
 
     return(<div className='bg-blue-700'>
-        <div className='px-16 py-10 flex'>
+        <div className='px-16 py-10 flex flex-wrap'>
             <motion.div whileHover={{scale: 1.1}}
                              className="w-150 h-72 mt-24 ml-4 bg-white p-10 bg-white rounded-lg drop-shadow-xl flex ">
                              <div className="m-auto">

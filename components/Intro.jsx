@@ -8,8 +8,8 @@ export default function Intro() {
   return (
     <Fragment>
       <div className='bg-beige h-150 ... px-16 py-10'>
-      <div className='grid grid-cols-2'>
-            <div>
+      <div className='flex flex-wrap'>
+            <div className='w-150'>
               <h1 className='mt-8 text-7xl font-bold text-black'>
               Place a really cool phrase here.{<br/>}
               And here.

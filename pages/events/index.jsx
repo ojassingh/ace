@@ -107,7 +107,7 @@ const events = ({events}) => {
         </div>
 
         <div className=' px-16 py-10 grid justify-items-center'>
-            <motion.div whileHover={{scale: 1.1}}
+            <motion.div whileHover={{scale: 1.03}}
                              className="ml-4 bg-white px-20 py-10 bg-white rounded-lg drop-shadow-xl grid justify-items-center">
 
             <h1 className="align-center font-semibold text-blue-500 text-5xl">Nationals</h1>                
@@ -123,7 +123,7 @@ const events = ({events}) => {
 
         <div className='px-16 grid justify-items-center'>
             
-            <motion.div whileHover={{scale: 1.2}}
+            <motion.div whileHover={{scale: 1.03}}
                              className="w-150 ml-8 bg-white p-10 bg-white rounded-lg drop-shadow-xl mb-12">
                              {/* <div className="m-auto"> */}
                               <div className="grid justify-content-center">
