@@ -41,7 +41,7 @@ const login = () => {
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
-            alert("Logged in Successfully")
+            // alert("Logged in Successfully")
         })
         .catch((error) => {
             const errorCode = error.code;
