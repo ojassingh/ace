@@ -16,7 +16,6 @@ const account = ({events}) => {
 
     const eventList = JSON.parse(events);
 
-    // const [data, setData] = useState(null)
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
@@ -34,25 +33,19 @@ const account = ({events}) => {
                 console.log('user account information loading..')
                 getDoc(doc(database, "usersCollection", user.uid)).then(docSnap => {
                     if (docSnap.exists()) {
-                    //   console.log("Document data:", docSnap.data());
                       setEmail(user.email);
                       setName(docSnap.data().displayName)
                       setNumber(docSnap.data().studentNumber)
                       setMember(docSnap.data().memberType)
                       setUser(docSnap.data().userType)
 
-                      const registerdEvents = docSnap.data().registeredEvents;
-                      
-                      registerdEvents.map((registeredEventId)=>{
+                      const registered = docSnap.data().registeredEvents;
+                      registered.map((registeredEventId)=>{
                         eventList.map((event)=>{
-                            // console.log(typeof(event.id), typeof(registeredEventId))
                             if(event.id === registeredEventId){
-                                // data.push('hi')
                                 setData(data => [...data, event])
                             }
                         })
-
-                        // console.log(data)
                     })
 
                     } else {
@@ -64,6 +57,8 @@ const account = ({events}) => {
             }
         });
     }, [])
+
+    // console.log(data)
 
 
 
