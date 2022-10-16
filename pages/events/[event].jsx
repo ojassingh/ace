@@ -270,7 +270,7 @@ export async function getStaticProps(context){
           data: data,
           eventID: eventId
        },
-      revalidate: 10
+      revalidate: 20
     }
 
 }
@@ -288,7 +288,7 @@ export async function getStaticPaths() {
     }))
   
     // { fallback: false } means other routes should 404
-    return { paths, fallback: false }
+    return { paths, fallback: true}
 }
 
 
