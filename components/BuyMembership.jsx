@@ -1,4 +1,3 @@
-import { loadStripe } from '@stripe/stripe-js';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import logo from '../public/logo-white.jpg'
@@ -7,11 +6,7 @@ import { getDoc, updateDoc, doc, arrayUnion} from "firebase/firestore"
 import { database, app} from "../firebase/config"
 import { getAuth } from "@firebase/auth";
 
-// Make sure to call `loadStripe` outside of a component’s render to avoid
-// recreating the `Stripe` object on every render.
-const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-);
+
 export default function BuyMembership(props) {
 
     
