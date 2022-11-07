@@ -9,9 +9,9 @@ import dynamic from 'next/dynamic';
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import 'react-quill/dist/quill.snow.css';
 // import QuillToolbar from "./EditorToolbar";
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const SetEvent = (props) => {
-
   const router = useRouter();
     const [isOpen, setIsOpen] = useState(false)
     const [name, setName] = useState('');
@@ -64,6 +64,7 @@ const SetEvent = (props) => {
         const dead = getTimestamp(deadline);
         // console.log(timestamp)
         closeModal();
+
         const docRef = await addDoc(collection(database, "events"), {
             name: name,
             date: startDate,
@@ -75,8 +76,22 @@ const SetEvent = (props) => {
             location: loc,
             gmOnly: gmOnly,
             registered: [],
-            // isFree: free
         })
+
+        if(price > 0 || gMPrice > 0){
+
+          const product = await stripe.products.create({
+            id: docRef.id,
+            name: name,
+          });
+
+          const newPrice = await stripe.prices.create({
+            unit_amount: 20,
+            currency: 'cad',
+            product: docRef.id,
+          });
+
+        }
 
         console.log("Document written with ID: ", docRef.id);
         router.push('/events');

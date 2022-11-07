@@ -62,11 +62,11 @@ const Navi = () => {
             <div className="py-50 w-1/2">
                 <ul className="nav-nav flex flex-wrap mt-4">
                     
-                    <li className="nav-list py-5 pl-12"><Link className="nav-link" href="/">[Home]</Link></li>
-                    <li className="nav-list py-5 pl-12"><Link className="nav-link" href="/about">[About]</Link></li>
-                    <li className="nav-list py-5 pl-12"><Link className="nav-link" href="/events">[Events]</Link></li>
-                    <li className="nav-list py-5 pl-12"><Link className="nav-link" href="/delegate">[Delegate]</Link></li>
-                    <li className="nav-list py-5 pl-12"><Link className="nav-link" href="/contact">[Contact]</Link></li>
+                    <li className="font-medium text-lg nav-list py-5 pl-12"><Link className=" nav-link" href="/">Home</Link></li>
+                    <li className="font-medium text-lg nav-list py-5 pl-12"><Link className=" nav-link" href="/about">About</Link></li>
+                    <li className="font-medium text-lg nav-list py-5 pl-12"><Link className=" nav-link" href="/events">Events</Link></li>
+                    <li className="font-medium text-lg nav-list py-5 pl-12"><Link className=" nav-link" href="/delegate">Delegate</Link></li>
+                    <li className="font-medium text-lg nav-list py-5 pl-12"><Link className=" nav-link" href="/contact">Contact</Link></li>
                     <li className="nav-list py-2 pl-12">{button}</li>
                 </ul>
             </div>

@@ -102,7 +102,7 @@ const event = ({data, eventID}) => {
             <div id="info-col" className="rounded-md text-xl mt-5 py-5 text-black">
                 <div className="drop-shadow-lg rounded-lg bg-blue-100/70 grid grid-cols-2">
                   <div className="drop-shadow-md mb-10 mt-10 grid justify-items-center">
-                    {(!alrRegistered && event.gMPrice!=0) && <PreviewPage name={event.name} price={event.price} gMPrice={event.gMPrice} gmOnly={event.gmOnly}/>}
+                    {(!alrRegistered && event.gMPrice!=0) && <PreviewPage eventID={eventID} name={event.name} price={event.price} gMPrice={event.gMPrice} gmOnly={event.gmOnly}/>}
                     {(!alrRegistered && event.gMPrice==0) && <EventRegistration eventID={eventID} event={event}/>}
                     {alrRegistered && <AlreadyRegistered name={event.name}/>}
                   </div>

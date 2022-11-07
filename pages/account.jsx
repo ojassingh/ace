@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import { collection, getDocs} from "firebase/firestore";
 import _ from 'lodash'
 import Link from "next/link";
+import BuyMembership from "../components/BuyMembership";
 
 const account = ({events}) => {
 
@@ -25,7 +26,7 @@ const account = ({events}) => {
     const auth = getAuth(app);
     const router = useRouter();
     const [data, setData] = useState([]);
-
+    const [uid, setID] = useState('');
 
     useEffect(()=>{
         onAuthStateChanged(auth, (user) => {
@@ -33,6 +34,7 @@ const account = ({events}) => {
                 console.log('user account information loading..')
                 getDoc(doc(database, "usersCollection", user.uid)).then(docSnap => {
                     if (docSnap.exists()) {
+                      setID(user.uid)  
                       setEmail(user.email);
                       setName(docSnap.data().displayName)
                       setNumber(docSnap.data().studentNumber)
@@ -77,7 +79,7 @@ const account = ({events}) => {
             <div className="px-20 ">
             <h1 className='grid grid-rows-2 text-5xl text-blue-500 font-bold'>{_.startCase(name)}'s Account</h1>
                 <div className="grid justify-items-center">
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-3 gap-3">
                         <div className="content-center">
                             <motion.div whileHover={{scale: 1.25}}
                              className=" p-10 bg-white rounded-lg drop-shadow-xl  ">
@@ -101,6 +103,11 @@ const account = ({events}) => {
                                 </ol>
                             </motion.div>
                         </div>
+
+                        {(_.lowerCase(memberType) == "general") && <div className="">
+                            <BuyMembership/>
+                        </div>}
+
                     </div>
                 </div>
                 <div className="grid justify-items-center">
