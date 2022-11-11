@@ -46,6 +46,7 @@ const event = ({data, eventID}) => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 const uid = user.uid;
+                setUser(uid)
                 getDoc(doc(database, "usersCollection", user.uid)).then(docSnap => {
                     if (docSnap.exists()) {
                       docSnap.data().registeredEvents.map((event)=>{
@@ -75,7 +76,7 @@ const event = ({data, eventID}) => {
                         />)
 
                         setDelete(
-                          <DeleteEvent id={eventID}/>
+                          <DeleteEvent price={event.price} gmPrice={event.gMPrice} id={eventID}/>
                         )
                       }
                     }
@@ -86,6 +87,8 @@ const event = ({data, eventID}) => {
             }
         });
     }, [])
+
+    
 
 
     return(<div className="bg-beige">
@@ -102,8 +105,8 @@ const event = ({data, eventID}) => {
             <div id="info-col" className="rounded-md text-xl mt-5 py-5 text-black">
                 <div className="drop-shadow-lg rounded-lg bg-blue-100/70 grid grid-cols-2">
                   <div className="drop-shadow-md mb-10 mt-10 grid justify-items-center">
-                    {(!alrRegistered && event.gMPrice!=0) && <PreviewPage eventID={eventID} name={event.name} price={event.price} gMPrice={event.gMPrice} gmOnly={event.gmOnly}/>}
-                    {(!alrRegistered && event.gMPrice==0) && <EventRegistration eventID={eventID} event={event}/>}
+                    {(!alrRegistered && event.price!=0) && <PreviewPage uid={user}  eventID={eventID} name={event.name} price={event.price} gMPrice={event.gMPrice} gmOnly={event.gmOnly}/>}
+                    {(!alrRegistered && event.price==0) && <EventRegistration eventID={eventID} event={event}/>}
                     {alrRegistered && <AlreadyRegistered name={event.name}/>}
                   </div>
 

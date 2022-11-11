@@ -1,14 +1,18 @@
 import { useState } from "react"
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from "react"
-import { deleteDoc, doc} from "firebase/firestore"
-import { database } from "../firebase/config"
+import { deleteDoc, doc, getDoc} from "firebase/firestore"
+import { database, app} from "../firebase/config"
 import { useRouter } from "next/router"
+
 
 const DeleteEvent = (props) => {
 
     const router = useRouter();
     let [isOpen, setIsOpen] = useState(false)
+    
+    const [price, setPrice] = useState(0);
+    const [gmPrice, setgmPrice] = useState(0);
   
     function closeModal() {
       setIsOpen(false)
@@ -21,9 +25,33 @@ const DeleteEvent = (props) => {
 
     async function deleteHandler(){
         console.log('initialising delete');
+
+
+
+        if(props.price > 0 || props.gmPrice > 0){
+          console.log("initialising stripe delete...")
+          fetch("/api/delete-product", 
+          {
+            method: "POST",
+            redirect: 'follow',
+            headers: {'Content-Type': 'application/json'}, 
+            body: JSON.stringify(props.id)
+          }).then(res => res.json())
+          .then(data => {
+            console.log("Archived stripe product: ", data);
+          })
+          .catch(function(err) {
+            console.info("error: ", err);
+        });
+        
+        }
+
         await deleteDoc(doc(database, "events", props.id));
+
         router.push('/events')
-        console.log('deleted document: ' + props.id)
+        console.log('deleted firestore document: ' + props.id)
+
+
       }
     
     return (

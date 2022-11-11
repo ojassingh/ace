@@ -8,6 +8,13 @@ module.exports = {
   images: {
     domains: ['flowbite.com', 'flowbite.s3.amazonaws.com'],
   },
+  webpack: (config) => {
+    // this will override the experiments
+    config.experiments = { ...config.experiments, ...{ topLevelAwait: true }};
+    // this will just update topLevelAwait property of config.experiments
+    // config.experiments.topLevelAwait = true 
+    return config;
+  },
   env: {
     NEXT_PUBLIC_EMAILJS_SERVICE_ID:process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
     NEXT_PUBLIC_EMAILJS_PUBLIC_KEY:process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
@@ -20,6 +27,7 @@ module.exports = {
     NEXT_PUBLIC_APP_ID:process.env.NEXT_PUBLIC_APP_ID,
     NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY:process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
     STRIPE_SECRET_KEY:process.env.STRIPE_SECRET_KEY,
+    DECRYPT_KEY:process.env.DECRYPT_KEY
   }
 }
 

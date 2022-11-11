@@ -74,7 +74,7 @@ const events = ({events}) => {
           <div className="grid grid-auto-rows grid-cols-3 justify-items-center gap-10 m-10">
                 {(eventList.length > 0) && 
                     eventList.map((event)=>{
-                        return(<motion.div whileHover={{scale: 1.15}} key={event.id}>
+                        return(<motion.div whileHover={{scale: 1.05}} key={event.id}>
                             <EventCard 
                                 id={event.id}
                                 name={event.name}
@@ -83,12 +83,11 @@ const events = ({events}) => {
                         </motion.div>)
                     })
                 }
-
-                {(eventList.length == 0) && <div className="grid justify-items-center">
+          </div>
+          {(eventList.length == 0) && <div className="grid justify-items-center">
                     <Image src={box} width='100' height='100'/>
                     <p className="text-gray-500 text-sm">No events to display for now. Stay tuned for more!</p>
                 </div>}
-          </div>
         </div>
         <br/>
         <div>

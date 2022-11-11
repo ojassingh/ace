@@ -87,8 +87,6 @@ const UpdateEvent = (props) => {
             finalDate: finalDate,
             deadline: dead,
             // location: location,
-            price: price,
-            gMPrice: gMPrice,
             description: descr,
             location: loc,
             gmOnly: gmOnly,
@@ -156,6 +154,7 @@ const UpdateEvent = (props) => {
                       Let's add a new event!
                       <br/>
                       <p className="mt-2 text-xs text-red-500">Note: this will be added to the <span className="text-blue-500">/events</span> page</p>
+                      <p className="mt-2 text-xs text-red-500">Alert: prices cannot be updated. If you intend to update a price, you must delete the event and recreate another event. </p>
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-md text-bold text-gray-500">

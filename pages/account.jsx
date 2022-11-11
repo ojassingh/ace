@@ -79,7 +79,7 @@ const account = ({events}) => {
             <div className="px-20 ">
             <h1 className='grid grid-rows-2 text-5xl text-blue-500 font-bold'>{_.startCase(name)}'s Account</h1>
                 <div className="grid justify-items-center">
-                    <div className="grid grid-cols-3 gap-3">
+                    <div className="flex gap-3">
                         <div className="content-center">
                             <motion.div whileHover={{scale: 1.25}}
                              className=" p-10 bg-white rounded-lg drop-shadow-xl  ">
@@ -104,8 +104,8 @@ const account = ({events}) => {
                             </motion.div>
                         </div>
 
-                        {(_.lowerCase(memberType) == "general") && <div className="">
-                            <BuyMembership/>
+                        {(_.lowerCase(memberType) == "regular") && <div className="">
+                            <BuyMembership id={uid}/>
                         </div>}
 
                     </div>

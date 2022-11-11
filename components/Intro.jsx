@@ -11,8 +11,8 @@ export default function Intro() {
       <div className='flex flex-wrap'>
             <div className='w-150'>
               <h1 className='mt-8 text-7xl font-bold text-black'>
-              Place a really cool phrase here.{<br/>}
-              And here.
+              Emerging academy for leaders.{<br/>}
+              Be a part of us.
               </h1>
 
               <div className='flex'>

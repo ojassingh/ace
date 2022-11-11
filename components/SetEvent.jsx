@@ -9,7 +9,8 @@ import dynamic from 'next/dynamic';
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import 'react-quill/dist/quill.snow.css';
 // import QuillToolbar from "./EditorToolbar";
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const Stripe = require('stripe');
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 const SetEvent = (props) => {
   const router = useRouter();
@@ -25,22 +26,7 @@ const SetEvent = (props) => {
     const [loading, setLoading] = useState(false);
     const [gmOnly, setGmOnly] = useState(false);
     const [quest, setQuest] = useState('');
-    // const [free, setFree] = useState(false);
 
-
-    // function isValid(price, free){
-    //   if(price==0 && free){
-    //     return true
-    //   }
-    //   else if(free==false && price!=0){
-    //     return true
-    //   }
-    //  else{
-    //     return false
-    //  }
-    // }
-
-    // const[value, setValue] = useState(initialValue);
 
     function closeModal() {
         setIsOpen(false)
@@ -80,15 +66,20 @@ const SetEvent = (props) => {
 
         if(price > 0 || gMPrice > 0){
 
-          const product = await stripe.products.create({
-            id: docRef.id,
-            name: name,
-          });
-
-          const newPrice = await stripe.prices.create({
-            unit_amount: 20,
-            currency: 'cad',
-            product: docRef.id,
+          fetch("/api/create-product", 
+          {
+            method: "POST",
+            redirect: 'follow',
+            headers: {'Content-Type': 'application/json'}, 
+            // headers: {"Access-Control-Allow-Origin": "*",
+            // "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"},
+            body: JSON.stringify({id: docRef.id, name: name, price: price, gmPrice: gMPrice})
+          }).then(res => res.json())
+          .then(data => {
+            console.log(data);
+          })
+          .catch(function(err) {
+            console.info("error: ", err);
           });
 
         }
@@ -156,6 +147,7 @@ const SetEvent = (props) => {
                       Let's add a new event!
                       <br/>
                       <p className="mt-2 text-xs text-red-500">Note: this will be added to the <span className="text-blue-500">/events</span> page</p>
+                      <p className="mt-2 text-xs text-red-500">Alert: prices cannot be updated. If you intend to update a price, you must delete the event and recreate another event. </p>
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-md text-bold text-gray-500">

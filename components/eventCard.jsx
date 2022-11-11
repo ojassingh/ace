@@ -33,7 +33,6 @@ const EventCard = (props) => {
         <div className="grid justify-items-center">
           <div className="flex">
           <motion.div  
-            whileHover={{ scale: 1.1 }}
           >
             {/* <p className="font-semibold">
               Learn more
