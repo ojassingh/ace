@@ -8,11 +8,28 @@ import { getDoc, doc, updateDoc, arrayUnion} from 'firebase/firestore';
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 import CryptoJS from "crypto-js";
 
-export default function PreviewPage(props) {
+export default function FreeGmRegistration(props) {
 
-  const memberType = props.memberType;
+
+  const [loggedIn, setLog] = useState(false);
+  const [memberType, setMember] = useState('');
+  const [message, setMessage] = useState("Checkout")
   const eventID = props.eventID;
 
+  const auth = getAuth(app);
+  useEffect(()=>{
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+          setLog(true);
+          const uid = user.uid;
+          getDoc(doc(database, "usersCollection", user.uid)).then(docSnap => {
+            if (docSnap.exists()) {
+              setMember(docSnap.data().memberType)
+            }
+        })
+        }
+    });
+  }, [])
 
   const [view, setView] = useState(<div className='grid justify-items-center'>
     {!props.gmOnly && <h1 className='text-sm text-gray-500'>Regular price: ${props.price.toString()}</h1>}
@@ -23,18 +40,20 @@ var hash = CryptoJS.SHA256(props.uid).toString();
 
   async function updateInfo(){
     const docRef = doc(database, 'usersCollection', props.uid);
-    const update = await updateDoc(docRef, {
-      registeredEvents: arrayUnion(eventID)
-    })
+      console.log(docRef)
+    // const update = await updateDoc(docRef, {
+    //   registeredEvents: arrayUnion(eventID)
+    // })
 
     const docRef2 = doc(database, 'events', eventID);
-    const update2 = await updateDoc(docRef2, {
-      registered: arrayUnion(props.uid)
-    })
+    console.log(docRef2)
+    // const update2 = await updateDoc(docRef2, {
+    //   registered: arrayUnion(props.uid)
+    // })
 
     
-    console.log("Info updated", update)
-    router.reload();
+    // console.log("Info updated", update)
+    // router.reload();
   }
 
 
@@ -43,7 +62,7 @@ var hash = CryptoJS.SHA256(props.uid).toString();
     const query = new URLSearchParams(window.location.search);
     if (query.get('tok')==hash) {
       updateInfo()
-      console.log('Order placed! You will receive an email confirmation.');
+      alert('You are now registered for the event.');
     }
 
     if (query.get('canceled')) {
@@ -55,25 +74,39 @@ var hash = CryptoJS.SHA256(props.uid).toString();
 
   const router = useRouter();
 
+  useEffect(()=>{
+    if(memberType=="general"){
+      setMessage("Register")
+    }
+  }), []
   
 
   async function submitHandler(){
-      fetch("/api/checkout_session", 
-      {
-        method: "POST",
-        redirect: 'follow',
-        headers: {'Content-Type': 'application/json'}, 
-        // headers: {"Access-Control-Allow-Origin": "*",
-        // "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"},
-        body: JSON.stringify({hash: hash, id: eventID, memberType: memberType})
-      }).then(res => res.json())
-      .then(data => {
-          window.location.href = data.session.url;
-      })
-      .catch(function(err) {
-        console.info("error: ", err);
-    });
-    
+    if(loggedIn){
+        if(memberType=="general"){
+            updateInfo();
+        }else{
+            fetch("/api/freegmcheckout", 
+            {
+                method: "POST",
+                redirect: 'follow',
+                headers: {'Content-Type': 'application/json'}, 
+                // headers: {"Access-Control-Allow-Origin": "*",
+                // "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"},
+                body: JSON.stringify({hash: hash, id: eventID, memberType: "regular"})
+            }).then(res => res.json())
+            .then(data => {
+                window.location.href = data.session.url;
+            })
+            .catch(function(err) {
+                console.info("error: ", err);
+            });
+        }
+
+    }else{
+      router.push('/login');
+      alert("You must be logged in before registering for an event.");
+    }
   }
 
   return (
@@ -93,7 +126,7 @@ var hash = CryptoJS.SHA256(props.uid).toString();
             e.preventDefault()
             submitHandler();
           }}>
-            Checkout
+            {message}
           </button>
         </div>
       </section>

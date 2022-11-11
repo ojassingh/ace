@@ -35,12 +35,6 @@ const EventRegistration = (props) => {
 
   async function eventHandler(){
 
-      if(!loggedIn){
-        router.push('/login');
-        alert("You must log in to register for any events")
-      }
-    
-      else{
       setLoading(true);
     
       const docRef =  doc(database, "events", props.eventID);
@@ -56,7 +50,6 @@ const EventRegistration = (props) => {
       setLoading(false);
       router.reload();
 
-      }
   }
 
     return(

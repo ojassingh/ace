@@ -33,7 +33,7 @@ export default function BuyMembership(props) {
       memberType: "general"
     })
     console.log("Member updated", update)
-    // router.reload();
+    router.reload();
   }
 
 

@@ -71,7 +71,7 @@ const events = ({events}) => {
         <Navi/>
         <h1 className="ml-4 px-16 font-semibold text-6xl text-black">Events</h1>
         <div className="grid justify-items-center">
-          <div className="grid grid-auto-rows grid-cols-3 justify-items-center gap-10 m-10">
+          <div className="flex flex-wrap justify-items-center gap-10 m-10">
                 {(eventList.length > 0) && 
                     eventList.map((event)=>{
                         return(<motion.div whileHover={{scale: 1.05}} key={event.id}>
@@ -79,6 +79,7 @@ const events = ({events}) => {
                                 id={event.id}
                                 name={event.name}
                                 date={event.date}
+                                gmOnly={event.gmOnly}
                             />
                         </motion.div>)
                     })

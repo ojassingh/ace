@@ -10,7 +10,7 @@ const EventCard = (props) => {
 
   const router = useRouter()
   const [dateFinal, setDate] = useState('');
-
+  const gmOnly = props.gmOnly;
 
 
   const formatDate = (date)=>{
@@ -21,8 +21,8 @@ const EventCard = (props) => {
   return (
     <div className="drop-shadow-xl bg-white rounded-lg w-72 ...">
       
-        <div className="grid justify-items-end pr-7 pt-5">
-          <p suppressHydrationWarning className="bg-blue-100/10 text-green-500  outline outline-1 font-bold rounded-md p-1">{formatDate(props.date)}</p>
+        <div className="grid justify-items-end pr-7 pt-5 gap-4">
+          <p className="bg-blue-100/10 text-green-500  outline outline-1 font-bold rounded-md p-1">{formatDate(props.date)}</p>
         </div>
     {/* <a href={'/events/' + props.id} target="_blank"> */}
         <div className="mt-4 grid justify-items-center">

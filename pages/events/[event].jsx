@@ -21,7 +21,11 @@ import UpdateEvent from "../../components/UpdateEvent";
 import DeleteEvent from "../../components/DeleteEvent";
 import EventRegistration from "../../components/EventRegistration";
 import AlreadyRegistered from "../../components/AlreadyRegistered";
-
+import GmRegistration from "../../components/GmRegistration";
+import FreeGmRegistration from "../../components/FreeGmRegistration";
+import LoginRegistration from "../../components/LoginRegistration";
+import _ from "lodash";
+import GMOnly from "../../components/GMOnly";
 const event = ({data, eventID}) => {
   
   const event = JSON.parse(data);
@@ -31,7 +35,7 @@ const event = ({data, eventID}) => {
   // const [admin, setAdmin] = useState(null);
   const [button, setButton] = useState(null);
   const [removeButton, setDelete] = useState(null);
-  const [user, setUser] = useState('');
+  const [uid, setUser] = useState(null);
 
   const formatDate = (date) => {
     const date1 = new Timestamp(date.seconds, date.nanoseconds).toDate().toString();
@@ -40,7 +44,54 @@ const event = ({data, eventID}) => {
 
 
   const [alrRegistered, setRegistered] = useState(false);
-  
+  const [member, setMember] = useState(null);
+  const [paymentButton, setPayment] = useState()
+
+  function setPaymentData(memberType, alrRegistered, uid){
+    console.log(memberType, alrRegistered, uid)
+    if(uid!=null){
+        console.log("not null")
+          if(!alrRegistered){
+            if(_.toLower(memberType)=="general"){
+              if(event.gMPrice != 0){
+                setPayment(
+                  <PreviewPage uid={uid} memberType={memberType}  eventID={eventID} name={event.name} price={event.price} gMPrice={event.gMPrice} gmOnly={event.gmOnly}/>
+                  // <h1>General paid events</h1>
+                )
+              }else{
+                setPayment(
+                  <EventRegistration eventID={eventID} event={event}/>
+                  // <h1>General Free events</h1>
+                )
+              }
+            }else{ //non general member payments
+              if(event.price != 0){
+                setPayment(
+                  <PreviewPage uid={uid} memberType={memberType}  eventID={eventID} name={event.name} price={event.price} gMPrice={event.gMPrice} gmOnly={event.gmOnly}/>
+                  // <h1>Non general paid event</h1>
+                )
+              }else{
+                if(event.gmOnly){
+                  setPayment(<GMOnly/>)
+                  // console.log("GmOnly")
+                }
+                else{
+                  setPayment(
+                    <EventRegistration eventID={eventID} event={event}/>
+                    // <h1>Non general free event</h1>
+                  )
+                }
+
+            }}
+          }else{
+            setPayment(<AlreadyRegistered name={event.name}/>)
+          }
+        }else{
+          // console.log("null")
+            setPayment(<LoginRegistration name={event.name}/>)
+            // setPayment(<h1>Login to register</h1>)
+        }
+  }
 
     useEffect(()=>{
         onAuthStateChanged(auth, (user) => {
@@ -48,13 +99,16 @@ const event = ({data, eventID}) => {
                 const uid = user.uid;
                 setUser(uid)
                 getDoc(doc(database, "usersCollection", user.uid)).then(docSnap => {
+                  const registered = false
                     if (docSnap.exists()) {
                       docSnap.data().registeredEvents.map((event)=>{
                         if(event == eventID){
                           setRegistered(true);
+                          registered = true
+                          console.log("Already registered")
                         }
                     })
-
+                     setPaymentData(docSnap.data().memberType, registered, uid);
                       if(docSnap.data().userType=='admin'){
                         
                         setButton(<UpdateEvent
@@ -83,10 +137,16 @@ const event = ({data, eventID}) => {
             })
                    
             } else {
+                // console.log(uid);
+                setPaymentData(null, false, null);
                 console.log('No one is logged in')
             }
         });
+
+        
+
     }, [])
+
 
     
 
@@ -105,9 +165,7 @@ const event = ({data, eventID}) => {
             <div id="info-col" className="rounded-md text-xl mt-5 py-5 text-black">
                 <div className="drop-shadow-lg rounded-lg bg-blue-100/70 grid grid-cols-2">
                   <div className="drop-shadow-md mb-10 mt-10 grid justify-items-center">
-                    {(!alrRegistered && event.price!=0) && <PreviewPage uid={user}  eventID={eventID} name={event.name} price={event.price} gMPrice={event.gMPrice} gmOnly={event.gmOnly}/>}
-                    {(!alrRegistered && event.price==0) && <EventRegistration eventID={eventID} event={event}/>}
-                    {alrRegistered && <AlreadyRegistered name={event.name}/>}
+                    {paymentButton}
                   </div>
 
                   <ul className="mt-5 ml-3 pt-8 px-8">
@@ -116,8 +174,8 @@ const event = ({data, eventID}) => {
                       <li className="mb-2 font-medium"><span className="text-blue-600  font-semibold mr-2">Event ends: </span> {formatDate(event.finalDate)}</li>
                       <li className="mb-2 font-medium"><span className="text-red-500  font-semibold mr-2">Deadline to register:</span> {formatDate(event.deadline)}</li>
                       <li className="mb-2 font-medium"><span className="text-blue-600  font-semibold mr-2">General member price:</span> ${event.gMPrice.toString()}</li>
-                      {(!event.gmOnly) && <li className="mb-2 font-medium"><span className="text-blue-600  font-semibold mr-2">Regular member price:</span> ${event.price.toString()}</li>}
-                      <li className="mb-2 flex font-medium"><span className="text-blue-600 font-semibold mr-2">📍 Location: </span> {event.location}</li>
+                      {(!event.gmOnly) && <li className="mb-2 font-medium"><span className="text-blue-600  font-semibold mr-2">Guest price:</span> ${event.price.toString()}</li>}
+                      <li className="mb-2 flex font-medium"><span className="text-blue-600 font-semibold mr-2">Location: </span> {event.location}</li>
                   </ul>
                   
                 </div>
@@ -295,3 +353,13 @@ export async function getStaticPaths() {
 }
 
 
+
+                    {/* {(!alrRegistered && (event.price!=0 && event.gMPrice!=0)) && <PreviewPage uid={user}  eventID={eventID} name={event.name} price={event.price} gMPrice={event.gMPrice} gmOnly={event.gmOnly}/>}
+                    {(!alrRegistered && (event.price==0 && event.gMPrice==0)) && <EventRegistration eventID={eventID} event={event}/>}
+                    {(!alrRegistered && (event.price!=0 && event.gMPrice==0)) &&
+                      <h1>hi</h1>
+                    }
+                    {(!alrRegistered && (event.price==0 && event.gMPrice!=0)) &&
+                      <h1>hi</h1>
+                    }
+                    {alrRegistered && <AlreadyRegistered name={event.name}/>} */}

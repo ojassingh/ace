@@ -8,11 +8,26 @@ import { getDoc, doc, updateDoc, arrayUnion} from 'firebase/firestore';
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 import CryptoJS from "crypto-js";
 
-export default function PreviewPage(props) {
+export default function GmRegistration(props) {
 
-  const memberType = props.memberType;
+  const [loggedIn, setLog] = useState(false);
+  const [memberType, setMember] = useState('');
   const eventID = props.eventID;
 
+  const auth = getAuth(app);
+  useEffect(()=>{
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+          setLog(true);
+          const uid = user.uid;
+          getDoc(doc(database, "usersCollection", user.uid)).then(docSnap => {
+            if (docSnap.exists()) {
+              setMember(docSnap.data().memberType)
+            }
+        })
+        }
+    });
+  }, [])
 
   const [view, setView] = useState(<div className='grid justify-items-center'>
     {!props.gmOnly && <h1 className='text-sm text-gray-500'>Regular price: ${props.price.toString()}</h1>}
@@ -43,7 +58,7 @@ var hash = CryptoJS.SHA256(props.uid).toString();
     const query = new URLSearchParams(window.location.search);
     if (query.get('tok')==hash) {
       updateInfo()
-      console.log('Order placed! You will receive an email confirmation.');
+      alert('You are now registered for the event.');
     }
 
     if (query.get('canceled')) {
@@ -58,6 +73,7 @@ var hash = CryptoJS.SHA256(props.uid).toString();
   
 
   async function submitHandler(){
+    if(loggedIn){
       fetch("/api/checkout_session", 
       {
         method: "POST",
@@ -73,7 +89,10 @@ var hash = CryptoJS.SHA256(props.uid).toString();
       .catch(function(err) {
         console.info("error: ", err);
     });
-    
+    }else{
+      router.push('/login');
+      alert("You must be logged in before registering for an event.");
+    }
   }
 
   return (
