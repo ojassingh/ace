@@ -21,18 +21,18 @@ export function MyModal() {
   
     return (
       <>
-        <div className="ml-5 mr-5 ">
+        <div className="ml-5 mr-5 z-50">
           <button
             type="button"
             onClick={openModal}
-            className="mt-2 text-blue-500 font-semibold rounded-md bg-gray-900/10 mr-10 px-5 py-3 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+            className="mt-2 text-blue-500 font-semibold rounded-md bg-gray-900/10 mr-10 px-5 py-3 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 z-50"
           >
             Admin Controls
           </button>
         </div>
   
         <Transition appear show={isOpen} as={Fragment}>
-          <Dialog as="div" className="relative z-10" onClose={closeModal}>
+          <Dialog as="div" className="relative z-50" onClose={closeModal}>
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"

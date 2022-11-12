@@ -73,11 +73,11 @@ const delegate = ({sessions}) => {
         <div>
         <h1 className="px-16 font-semibold text-6xl text-black">Training Sessions</h1>
         <div className="grid justify-items-center">
-        <div id="training-session-display" className="grid grid-auto-rows grid-auto-cols items-stretch gap-4 m-10">
+        <div id="training-session-display" className=" grid grid-auto-rows grid-auto-cols items-stretch gap-4 m-10 z-20">
 
             {(sessionList.length > 0) &&
                 sessionList.map((session)=>{
-                    return(<motion.div whileHover={{scale:1.1}}
+                    return(<motion.div whileHover={{scale:1.05}}
                     key={session.id}>
                         <SessionCard 
                             id={session.id}
@@ -85,6 +85,7 @@ const delegate = ({sessions}) => {
                             name={session.name}
                             link={session.qLink}
                             gmOnly={session.gmOnly}
+                            description={session.description}
                         />
                     </motion.div>)
                 })
@@ -101,7 +102,7 @@ const delegate = ({sessions}) => {
         </div>
         
         <div>
-        <div className="mx-16 grid grid-cols-10 gap-4">
+        <div className="mx-16 grid grid-cols-10 gap-4 z-0">
               <div className="drop-shadow-xl col-span-5 bg-white rounded-lg">
                 <div className="p-10">
                     <h1 className="font-semibold text-blue-500 text-5xl">Become a Delegate</h1>

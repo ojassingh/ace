@@ -216,11 +216,23 @@ const SetSession = () => {
                                     </div>
 
                                     <div className="grid w-96">
-                                        <ReactQuill
+                                        {/* <ReactQuill
                                             className="mt-4 w-96"
                                             value={descr}
                                             onChange={(e)=>setDescr(e)}   
                                             placeholder='spread your message...'   
+                                        /> */}
+                                        <textarea
+                                            className="mt-4 w-96"
+                                            value={descr}
+                                            rows={3}
+                                            onChange={(e)=>{
+                                              e.preventDefault()
+                                              setDescr(e.target.value);
+                                              // console.log(e.target.value)
+                                            }}   
+                                            placeholder={'spread your message...'}
+                                            name={name} 
                                         />
                                     </div>
 

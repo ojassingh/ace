@@ -10,7 +10,11 @@ import { app, database } from "../firebase/config";
 import DeleteTraining from './DeleteTraining'
 import logo from '../public/logo.jpg'
 import Image from "next/image";
-import { Popover } from '@headlessui/react'
+// import Example from "./Popover";
+import dynamic from 'next/dynamic'
+const Example = dynamic(() => import("./Popover"), {
+ssr: false,
+});
 
 const SessionCard = (props) => {
 
@@ -51,16 +55,22 @@ const SessionCard = (props) => {
     <div className="drop-shadow-xl bg-white rounded-lg w-72 ...">
       
       <div className="grid justify-items-end pr-7 pt-5">
-        <div className="flex">
+        <div className="flex z-30">
           {removeButton}
           <p className="ml-4 bg-blue-100/10 text-green-500  outline outline-1 rounded-md p-1">{formatDate(props.date)}</p>
         </div>
+        {props.gmOnly && <p className="px-8 text-xs mt-2 text-red-500">General Members only!</p>}
       </div>
-      <a href={props.link} target="_blank">
+      <a href={props.link} target="_blank" className="cursor-pointer" 
+      // onClick={()=>{router.push(props.link)}}
+      >
       <div className="mt-4 pb-4 grid justify-items-center">
-        <motion.div whileHover={{scale: 1.05}}><Image className='rounded-lg' src={logo} alt='' width='200' height='200'/></motion.div>
-        <h1 className="font-medium px-5 pt-5 text-center text-2xl pl-5">{props.name}</h1>
-        <p className="px-8 text-xs mb-3 text-red-500">General Members only!</p>
+        <motion.div><Image className='rounded-lg' src={logo} alt='' width='200' height='200'/></motion.div>
+        <div className="flex gap-4 px-5">
+          <h1 className="font-medium pt-5 text-center text-2xl pl-5">{props.name}</h1>
+          <h1 className="font-medium pt-5 text-center text-2xl pl-5"><Example description={props.description} link={props.link}/></h1>
+        </div>
+        
         {/* <MyPopover/> */}
       </div>
       </a>
