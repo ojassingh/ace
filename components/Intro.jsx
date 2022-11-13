@@ -11,7 +11,7 @@ export default function Intro() {
       <div className='flex flex-wrap'>
             <div className='w-150'>
               <h1 className='mt-8 text-7xl font-bold text-black'>
-              Emerging academy for leaders.{<br/>}
+              Academy for emerging leaders.{<br/>}
               Be a part of us.
               </h1>
 

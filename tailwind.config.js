@@ -28,7 +28,7 @@ module.exports = {
         'beige': '#FCFCFC',
         'bermuda': '#78dcca',
         'midnight': '#121063',
-    }
+    },
   },
   plugins: [
     require('tailwindcss-font-inter'),
