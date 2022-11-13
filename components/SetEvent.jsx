@@ -66,6 +66,10 @@ const SetEvent = (props) => {
 
         if(price > 0 || gMPrice > 0){
 
+          if(gmOnly){
+            setPrice(0);
+          }
+
           fetch("/api/create-product", 
           {
             method: "POST",
@@ -114,7 +118,7 @@ const SetEvent = (props) => {
 
 
         <Transition appear show={isOpen} as={Fragment}>
-          <Dialog as="div" className="relative z-10" onClose={closeModal}>
+          <Dialog as="div" className="relative z-20" onClose={closeModal}>
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -273,7 +277,7 @@ const SetEvent = (props) => {
 
 
                         <Transition appear show={descOpen} as={Fragment}>
-                        <Dialog as="div" className="relative z-10" onClose={closeDesc}>
+                        <Dialog as="div" className="relative z-30" onClose={closeDesc}>
                             <Transition.Child
                             as={Fragment}
                             enter="ease-out duration-300"

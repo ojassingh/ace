@@ -421,7 +421,7 @@ function AboutPage(){
             setPic17(url);
         })
 
-        getDownloadURL(ref(storage, 'images/TERESALIU.jpg'))
+        getDownloadURL(ref(storage, 'images/TERESALIU.jpeg'))
         .then((url) => {
             // `url` is the download URL for 'images/stars.jpg'
 

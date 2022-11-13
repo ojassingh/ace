@@ -73,6 +73,11 @@ const UpdateEvent = (props) => {
     }
 
     async function eventHandler(){
+
+      if(gmOnly){
+        setPrice(0);
+      }
+
         setLoading(true);
         const startDate = getTimestamp(date);
         const finalDate = getTimestamp(endDate);
@@ -283,7 +288,7 @@ const UpdateEvent = (props) => {
 
 
                         <Transition appear show={descOpen} as={Fragment}>
-                        <Dialog as="div" className="relative z-10" onClose={closeDesc}>
+                        <Dialog as="div" className="relative z-20" onClose={closeDesc}>
                             <Transition.Child
                             as={Fragment}
                             enter="ease-out duration-300"

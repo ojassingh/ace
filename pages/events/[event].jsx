@@ -307,7 +307,7 @@ const event = ({data, eventID}) => {
             
           </div>
           
-          {/* <CarouselComp/> */}
+          <CarouselComp/>
         </div>
         <div className="mt-20">
           <Contact/>

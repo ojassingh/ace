@@ -61,20 +61,6 @@ const CarouselComp = () => {
             setPic3(url);
         })
 
-        getDownloadURL(ref(storage, 'images/pic4.png'))
-        .then((url) => {
-            // `url` is the download URL for 'images/stars.jpg'
-
-            // This can be downloaded directly:
-            const xhr = new XMLHttpRequest();
-            xhr.responseType = 'blob';
-            xhr.onload = (event) => {
-            const blob = xhr.response;
-            };
-            xhr.open('GET', url);
-            xhr.send();
-            setPic4(url);
-        })
 
         .catch((error) => {
             // Handle any errors
@@ -107,17 +93,7 @@ const CarouselComp = () => {
                 src={pic3}
                 alt="..."
                 />
-                <img
-                id="myimg4"
-                // width='5184'
-                // height='3456'
-                src={pic4}
-                alt="..."
-                />
-                {/* <img
-                src={logo5}
-                alt="..."
-                /> */}
+                
             </Carousel>
             {/* </div> */}
         </div>
