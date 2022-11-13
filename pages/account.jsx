@@ -13,9 +13,10 @@ import _ from 'lodash'
 import Link from "next/link";
 import BuyMembership from "../components/BuyMembership";
 
-const account = ({events}) => {
+const account = ({events, sessions}) => {
 
     const eventList = JSON.parse(events);
+    const sessionList = JSON.parse(sessions);
 
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('');
@@ -26,7 +27,10 @@ const account = ({events}) => {
     const auth = getAuth(app);
     const router = useRouter();
     const [data, setData] = useState([]);
+    const [sessionData, setSessionData] = useState([]);
     const [uid, setID] = useState('');
+
+
 
     useEffect(()=>{
         onAuthStateChanged(auth, (user) => {
@@ -46,6 +50,15 @@ const account = ({events}) => {
                         eventList.map((event)=>{
                             if(event.id === registeredEventId){
                                 setData(data => [...data, event])
+                            }
+                        })
+                    })
+
+                    const registeredSessions = docSnap.data().registeredSessions;
+                    registeredSessions.map((sessionID)=>{
+                        sessionList.map((session)=>{
+                            if(session.id == sessionID){
+                                setSessionData(sessionData => [...sessionData, session])
                             }
                         })
                     })
@@ -91,9 +104,9 @@ const account = ({events}) => {
             <div className="px-20 ">
             <h1 className='grid grid-rows-2 text-5xl text-blue-500 font-bold'>{_.startCase(name)}'s Account</h1>
                 <div className="grid justify-items-center">
-                    <div className="flex gap-3">
-                        <div className="content-center">
-                            <motion.div whileHover={{scale: 1.25}}
+                    <div className="flex flex-wrap gap-3">
+                        <div className="content-center flex-1">
+                            <motion.div whileHover={{scale: 1.05}}
                              className=" p-10 bg-white rounded-lg drop-shadow-xl  ">
                             {(userType==='admin') && <h1 className='font-medium text-green-400'>You are one of the admins of this website!</h1>}
                                 
@@ -104,8 +117,8 @@ const account = ({events}) => {
                                 
                             </motion.div>
                         </div>
-                        <div className="">
-                            <motion.div whileHover={{scale: 1.25}} className="p-10 bg-white rounded-lg drop-shadow-xl">
+                        <div className="flex-1">
+                            <motion.div whileHover={{scale: 1.05}} className="p-10 bg-white rounded-lg drop-shadow-xl">
                             <h1 className='font-medium text-blue-500'>Here are all the events you've signed up for:</h1>
                                 <ol >
                                     {(data.length > 0) && data.map((event)=>{
@@ -115,10 +128,21 @@ const account = ({events}) => {
                                 </ol>
                             </motion.div>
                         </div>
-
+                        <div className="flex-1">
+                            <motion.div whileHover={{scale: 1.05}} className="p-10 bg-white rounded-lg drop-shadow-xl">
+                            <h1 className='font-medium text-blue-500'>Here are all the training sessions you've signed up for:</h1>
+                                <ol >
+                                    {(sessionData.length > 0) && sessionData.map((event)=>{
+                                        return(<li className="text-blue-500 underline" key={event.id}><Link href={"/delegate"}>{event.name}</Link></li>)
+                                    })}
+                                    {(sessionData.length == 0) && <li>No events to display</li>}
+                                </ol>
+                            </motion.div>
+                        </div>
+{/* 
                         {(_.lowerCase(memberType) == "regular") && <div className="">
                             <BuyMembership id={uid}/>
-                        </div>}
+                        </div>} */}
 
                     </div>
                 </div>
@@ -153,10 +177,19 @@ export const getStaticProps = async () => {
 
     const events = JSON.stringify(data);
 
+    const session_entries = await getDocs((collection(database, "training")));
+    const session_data = session_entries.docs.map(session_entry => ({
+      id: session_entry.id,
+      ...session_entry.data()
+    }));
+
+    const sessions = JSON.stringify(session_data);
+
     
     return {
       props: {
         events,
+        sessions
       },
       revalidate: 10
     }

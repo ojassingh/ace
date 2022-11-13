@@ -16,15 +16,19 @@ const Example = dynamic(() => import("./Popover"), {
 ssr: false,
 });
 
+import RegisterSession from "./RegisterSession";
+
 const SessionCard = (props) => {
 
   const auth = getAuth(app);
     const [removeButton, setDelete] = useState(null);
+    const [userID, setUser] = useState(null)
 
     useEffect(()=>{
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 const uid = user.uid;
+                setUser(uid)
                 
                 
                 getDoc(doc(database, "usersCollection", user.uid)).then(docSnap => {
@@ -61,19 +65,23 @@ const SessionCard = (props) => {
         </div>
         {props.gmOnly && <p className="px-8 text-xs mt-2 text-red-500">General Members only!</p>}
       </div>
-      <a href={props.link} target="_blank" className="cursor-pointer" 
-      // onClick={()=>{router.push(props.link)}}
-      >
+
       <div className="mt-4 pb-4 grid justify-items-center">
         <motion.div><Image className='rounded-lg' src={logo} alt='' width='200' height='200'/></motion.div>
         <div className="flex gap-4 px-5">
           <h1 className="font-medium pt-5 text-center text-2xl pl-5">{props.name}</h1>
           <h1 className="font-medium pt-5 text-center text-2xl pl-5"><Example description={props.description} link={props.link}/></h1>
         </div>
+
+        <a href={props.link} className='mt-2 px-24 py-1 bg-blue-500 text-white rounded-md'>
+          Link
+        </a>
+        <div className="px-5">
+          <RegisterSession user={userID} sessionID={props.id} />
+        </div>
         
         {/* <MyPopover/> */}
       </div>
-      </a>
     </div>
     )
 }

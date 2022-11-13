@@ -48,7 +48,7 @@ export default function Example(props) {
                 leaveFrom="opacity-100 translate-y-0"
                 leaveTo="opacity-0 translate-y-1"
               >
-                <Popover.Panel className="rounded-xl bg-white mt-8 absolute left-1/2 z-40 -mt-52 w-screen max-w-sm -translate-x-1/2 transform px-4 sm:px-0 lg:max-w-3xl">
+                <Popover.Panel className="rounded-xl bg-white mt-8 absolute left-1 z-40 -mt-52 w-60 max-w-sm -translate-x-1/2 transform px-4 sm:px-0 lg:max-w-3xl">
                   <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 text-lg font-normal px-10 py-2">
                     {props.description}
                   </div>

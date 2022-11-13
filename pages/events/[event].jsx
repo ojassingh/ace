@@ -48,9 +48,9 @@ const event = ({data, eventID}) => {
   const [paymentButton, setPayment] = useState()
 
   function setPaymentData(memberType, alrRegistered, uid){
-    console.log(memberType, alrRegistered, uid)
+    // console.log(memberType, alrRegistered, uid)
     if(uid!=null){
-        console.log("not null")
+        // console.log("not null")
           if(!alrRegistered){
             if(_.toLower(memberType)=="general"){
               if(event.gMPrice != 0){

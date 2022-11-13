@@ -114,6 +114,7 @@ const signup = () => {
               memberType: memberType,
               userType: userType,
               registeredEvents: [],
+              registeredSessions: []
             }
             setDoc(doc(database, "usersCollection", user.uid), docData);
             router.push('/')
