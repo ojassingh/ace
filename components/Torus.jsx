@@ -15,7 +15,7 @@ const Torus = () => {
         gl={{antialias:true}}
         camera={{ position: [0, 0, 6] }}
         linear>
-        <ambientLight intensity={0.65}/>
+        <ambientLight intensity={0.75}/>
         <directionalLight intensity={0.7} position={[5, 4, 10]} />
         <color attach="background" args={[0xFCFCFC]} />
         <motion.group 
@@ -34,7 +34,7 @@ const Torus = () => {
                 args={[2, 0.5, 300, 20, 6, 10]}
                 />
                 <meshPhongMaterial 
-                color={0x05970}
+                color={0x1A56DA}
                 wireframe = {true}
                 />
             </motion.mesh>
