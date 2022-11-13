@@ -3,7 +3,7 @@ import   {useRouter} from 'next/router';
 import { useEffect, useState } from "react";
 import { app, database } from "../firebase/config";
 import { getAuth } from "@firebase/auth";
-import { onAuthStateChanged } from "@firebase/auth";
+import { onAuthStateChanged, sendPasswordResetEmail} from "@firebase/auth";
 import { signOut } from "@firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import Footer from "../components/Footer";
@@ -74,6 +74,18 @@ const account = ({events}) => {
         });
    }
 
+   function passwordChangeHandler(){
+    sendPasswordResetEmail(auth, email)
+    .then(() => {
+      alert("Password reset email has been sent. If you can't find it, check your spam!")
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+    });  
+   }
+
     return(<div className="bg-beige h-screen">
             <Navi/>
             <div className="px-20 ">
@@ -112,8 +124,13 @@ const account = ({events}) => {
                 </div>
                 <div className="grid justify-items-center">
                 <motion.button 
+                
+                className='text-black mt-32 underline px-10 py-3 font-bold' onClick={passwordChangeHandler}>
+                        Want to reset your password?
+                </motion.button>
+                <motion.button 
                 whileHover={{scale: 1.5}}
-                className='mt-32 text-white bg-blue-500 px-10 py-3 rounded-full font-bold' onClick={signOutHandler}>
+                className='text-white bg-blue-500 px-10 py-3 rounded-full font-bold' onClick={signOutHandler}>
                         Sign out
                 </motion.button>
             </div>

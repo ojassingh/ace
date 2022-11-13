@@ -5,7 +5,7 @@ import Navi from '../components/Navi';
 import { useState, Fragment, useEffect} from 'react';
 import { useRouter } from 'next/router';
 import {signInWithEmailAndPassword} from "firebase/auth";
-import { onAuthStateChanged, getAuth} from 'firebase/auth';
+import { onAuthStateChanged, getAuth, sendPasswordResetEmail} from 'firebase/auth';
 import { app } from '../firebase/config';
 import Footer from '../components/Footer';
 import { ref, getDownloadURL } from "firebase/storage";
@@ -99,6 +99,18 @@ const login = () => {
         });
     }, [])
 
+    function passwordChangeHandler(){
+        sendPasswordResetEmail(auth, email)
+        .then(() => {
+          alert("Password reset email has been sent. If you can't find it, check your spam!")
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // ..
+        });  
+       }
+
 
     return(<div className='bg-beige'>
         <Navi/>
@@ -130,7 +142,7 @@ const login = () => {
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
                 <a href="/" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
                     <img id='myimg' className="w-9 h-9 mr-2" src='' alt="logo"/>
-                    ACE Uoft Scarborough    
+                    ACE UofT Scarborough    
                 </a>
                 <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                     <div className="px-6 py-6 space-y-4 md:space-y-6 sm:p-8">
@@ -176,6 +188,10 @@ const login = () => {
                             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                                 Don't have an account? <Link href="/signup" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up here!</Link>
                             </p>
+                            <motion.button 
+                            className='text-gray-500 underline py-1 text-sm font-light' onClick={passwordChangeHandler}>
+                                    Forgot your password?
+                            </motion.button>
                         </form>
                     </div>
                 </div>
