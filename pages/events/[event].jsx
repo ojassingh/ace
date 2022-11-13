@@ -64,24 +64,24 @@ const event = ({data, eventID}) => {
                   // <h1>General Free events</h1>
                 )
               }
-            }else{ //non general member payments
-              if(event.price != 0){
+            }else{
+              
+              //non general member payments
+
+              if(event.gmOnly){
+                setPayment(<GMOnly/>)
+              }
+
+              else if(event.price != 0){
                 setPayment(
                   <PreviewPage uid={uid} memberType={memberType}  eventID={eventID} name={event.name} price={event.price} gMPrice={event.gMPrice} gmOnly={event.gmOnly}/>
                   // <h1>Non general paid event</h1>
                 )
               }else{
-                if(event.gmOnly){
-                  setPayment(<GMOnly/>)
-                  // console.log("GmOnly")
-                }
-                else{
-                  setPayment(
-                    <EventRegistration eventID={eventID} event={event}/>
-                    // <h1>Non general free event</h1>
-                  )
-                }
-
+                setPayment(
+                  <EventRegistration eventID={eventID} event={event}/>
+                  // <h1>Non general free event</h1>
+                )
             }}
           }else{
             setPayment(<AlreadyRegistered name={event.name}/>)

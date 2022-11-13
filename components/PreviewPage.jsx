@@ -19,7 +19,9 @@ export default function PreviewPage(props) {
     <h1 className='text-sm text-gray-500'>General Member price: ${props.gMPrice.toString()}</h1>
   </div>)
 
-var hash = CryptoJS.SHA256(props.uid).toString();
+var hash = CryptoJS.SHA256(props.uid+eventID).toString();
+
+console.log("Hash: ", hash)
 
   async function updateInfo(){
     const docRef = doc(database, 'usersCollection', props.uid);

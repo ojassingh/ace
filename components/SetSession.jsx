@@ -82,7 +82,7 @@ const SetSession = () => {
 
 
         <Transition appear show={isOpen} as={Fragment}>
-          <Dialog as="div" className="relative z-10" onClose={closeModal}>
+          <Dialog as="div" className="relative z-50" onClose={closeModal}>
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -175,7 +175,7 @@ const SetSession = () => {
 
 
                         <Transition appear show={descOpen} as={Fragment}>
-                        <Dialog as="div" className="relative z-10" onClose={closeDesc}>
+                        <Dialog as="div" className="relative z-50" onClose={closeDesc}>
                             <Transition.Child
                             as={Fragment}
                             enter="ease-out duration-300"

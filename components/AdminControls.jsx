@@ -21,7 +21,7 @@ export function MyModal() {
   
     return (
       <>
-        <div className="ml-5 mr-5 z-50">
+        <div className="ml-5 mr-5">
           <button
             type="button"
             onClick={openModal}
