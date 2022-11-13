@@ -299,7 +299,7 @@ const event = ({data, eventID}) => {
                     <div className="drop-shadow-lg p-10 bg-blue-100/70 rounded-md">
                     <h1 className="text-2xl text-purple-500 font-semibold">Learn more about us ...</h1>
                         <p className="font-medium mt-3">
-                        At ACE, we strive to ... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lobortis finibus nunc et bibendum. Vestibulum facilisis mi massa, a ornare massa suscipit id. Nam pretium aliquam turpis, at faucibus elit. Phasellus bibendum dictum leo, eget bibendum massa consectetur vitae. Vestibulum viverra maximus nibh ac pretium. Aenean non diam rhoncus metus aliquet interdum at at nisl. Nunc porttitor libero sed mattis facilisis.
+                        Stemming from ACE CANADA’s values, ACE UTSC has set forth a mission to focus on individual development and personal growth. We strive to provide value to the UTSC community by preparing emerging leaders, assisting them in developing valuable skills in communication, critical thinking, and networking. Through all the event we run, we aim to istill an enriching style of learning in assisting our delegates to become college and career ready, Our team has been hard at work, preparing materials, consulting with professionals. and pursuing partnerships to fulfill (and go beyond) this mission.
                         </p>
                     </div>
                  </div>
