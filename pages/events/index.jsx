@@ -96,11 +96,11 @@ const events = ({events}) => {
 
         <div className="grid justify-items-center">
           <div className="flex gap-4">
-            <motion.img src={pic1} whileHover={{scale: 1.1}}
+            <motion.img src={pic1} whileHover={{scale: 1.05}}
                                 className="h-120 ml-8 bg-white bg-white rounded-lg drop-shadow-xl">
             </motion.img>
 
-            <motion.img src={pic2} whileHover={{scale: 1.1}}
+            <motion.img src={pic2} whileHover={{scale: 1.05}}
                               className="h-120 ml-4 bg-white bg-white rounded-lg drop-shadow-xl flex">
               </motion.img>
           </div>
