@@ -93,21 +93,21 @@ const SubSessionData = (props) => {
     const session = props.session;
     // console.log(session)
     const registeredList = session.registered;
-    // console.log(registeredList);
+    console.log(registeredList);
 
     const [loading, setLoading] = useState(true);
 
 
     useEffect(()=>{
-        // console.log(registeredList);
+    
 
-        registeredList.map((user)=>{
-            props.userList.map((userObject)=>{
-                if(user === userObject.id){
-                    setData(userData => [...userData, userObject])
-                }
-            })
-        })
+        // registeredList.map((user)=>{
+        //     props.userList.map((userObject)=>{
+        //         if(user === userObject.id){
+        //             setData(userData => [...userData, userObject])
+        //         }
+        //     })
+        // })
 
     }, []);
 

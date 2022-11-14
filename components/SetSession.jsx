@@ -46,7 +46,8 @@ const SetSession = () => {
             date: startDate,
             description: descr,
             qLink: link,
-            gmOnly: gmOnly
+            gmOnly: gmOnly,
+            registered: []
         })
 
         router.push('/delegate');
