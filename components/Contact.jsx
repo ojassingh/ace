@@ -82,7 +82,7 @@ const Contact = () => {
 
                                 <div className="flex flex-col mt-2">
                                     <label htmlFor="message" className="hidden">Email</label>
-                                    <textarea onChange={(e)=>{setMessage(e.target.value)}} type="text" value={message} name="message" id="message" placeholder="Type your message here.." className="text-white w-100 mt-2 py-10 px-3 rounded-lg bg-blue-400/10 dark:bg-gray-800 border border-gray-400 dark:border-gray-700  font-semibold focus:border-indigo-500 focus:outline-none"/>
+                                    <textarea onChange={(e)=>{setMessage(e.target.value)}} type="text" value={message} name="message" id="message" placeholder="Type your message here.." className="text-black w-100 mt-2 py-10 px-3 rounded-lg bg-blue-400/10 dark:bg-gray-800 border border-gray-400 dark:border-gray-700  font-semibold focus:border-indigo-500 focus:outline-none"/>
                                 </div>
 
                                 <button type="submit" className="text-white md:w-32 bg-blue-600 hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-indigo-500 transition ease-in-out duration-300">
