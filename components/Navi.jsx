@@ -15,7 +15,7 @@ const Navi = () => {
 
     const auth = getAuth(app);
 
-    const [button, setButton] = useState(<Link href='/signup'><p className="font-medium text-lg cursor-pointer nav-link mt-3">[Sign up]</p></Link>);
+    const [button, setButton] = useState(<Link href='/signup'><p className="font-medium text-lg cursor-pointer nav-link mt-3">Sign up</p></Link>);
 
     const [admin, setAdmin] = useState(null);
 
