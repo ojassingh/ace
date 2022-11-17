@@ -95,8 +95,6 @@ const UpdateEvent = (props) => {
             description: descr,
             location: loc,
             gmOnly: gmOnly,
-            registered: registered
-            // isFree: isFree
         })
 
         console.log("Document written");
