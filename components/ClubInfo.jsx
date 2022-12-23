@@ -60,9 +60,9 @@ const [pic2, setPic2] = useState('')
 
 
     return(<div className='bg-blue-700'>
-        <div className='px-16 py-10 flex flex-wrap'>
+        <div className='px-16 lg:py-10 flex flex-wrap md:grid md:place-content-center gap-10'>
             <motion.div whileHover={{scale:1.05}}
-                             className="w-150 h-72 mt-24 ml-4 bg-white p-10 bg-white rounded-lg drop-shadow-xl flex ">
+                             className="w-150 h-72 md:mt-10 lg:mt-24 lg:ml-4 bg-white p-10 bg-white rounded-lg drop-shadow-xl flex ">
                              <div className="m-auto">
                                 <h1 className='leading-tight text-4xl font-semibold text-black'>Join one of the most lucrative clubs at the University of Toronto.</h1>
                                 <h1 className='mt-3 flex font-medium text-green-400'>We would love to have you in our team! Learn more <Link href='/about'><p  className='mx-1 cursor-pointer underline'>about us</p></Link></h1>    
@@ -72,18 +72,17 @@ const [pic2, setPic2] = useState('')
                              </div>
             </motion.div>
             <motion.img src={pic2} whileHover={{scale:1.05}}
-                             className="mt-32 w-140 ml-8 bg-white bg-white rounded-lg drop-shadow-xl flex ">
+                             className="lg:mt-32 w-140 lg:ml-8 bg-white bg-white rounded-lg drop-shadow-xl flex md:mx-auto">
             </motion.img>
     
         </div>
-        <div className='px-16 flex -mt-48 '>
+        <div className='px-16 lg:-mt-48 flex flex-wrap md:grid md:place-content-center gap-10'>
             <motion.img src={pic1} whileHover={{scale:1.05}}
-                             className="mt-10 h-120 ml-4 bg-white bg-white rounded-lg drop-shadow-xl flex">
+                             className="mt-10 h-120 lg:ml-4 bg-white bg-white rounded-lg drop-shadow-xl md:mx-auto">
             </motion.img>
-{/* 
-            <Image className="rounded-lg object-cover mt-32 rounded-lg drop-shadow-xl" src={pic1} width={200} height={50}/> */}
+
             <motion.div whileHover={{scale:1.05}}
-                             className="mt-44 w-150 h-76 ml-8 bg-white p-10 bg-white rounded-lg drop-shadow-xl flex mb-12">
+                             className="lg:mt-44 w-150 h-76 lg:ml-8 bg-white p-10 bg-white rounded-lg drop-shadow-xl mb-12">
                              <div className="m-auto">
                                 <h1 className='leading-tight text-4xl font-semibold text-black'>How can you be involved?</h1>
                                 <h1 className='flex mt-3 font-medium text-green-400'>Check out all our upcoming <Link href='/events'><p  className='mx-1 cursor-pointer underline'>events</p></Link> and <Link href='/delegate'><p className="ml-1 cursor-pointer underline">training sessions!!</p></Link></h1>    

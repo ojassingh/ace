@@ -351,15 +351,3 @@ export async function getStaticPaths() {
     // { fallback: false } means other routes should 404
     return { paths, fallback: 'blocking'}
 }
-
-
-
-                    {/* {(!alrRegistered && (event.price!=0 && event.gMPrice!=0)) && <PreviewPage uid={user}  eventID={eventID} name={event.name} price={event.price} gMPrice={event.gMPrice} gmOnly={event.gmOnly}/>}
-                    {(!alrRegistered && (event.price==0 && event.gMPrice==0)) && <EventRegistration eventID={eventID} event={event}/>}
-                    {(!alrRegistered && (event.price!=0 && event.gMPrice==0)) &&
-                      <h1>hi</h1>
-                    }
-                    {(!alrRegistered && (event.price==0 && event.gMPrice!=0)) &&
-                      <h1>hi</h1>
-                    }
-                    {alrRegistered && <AlreadyRegistered name={event.name}/>} */}

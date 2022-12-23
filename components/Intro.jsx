@@ -30,7 +30,7 @@ export default function Intro() {
             </div>  
             <p className='text-xl font-normal'>ACE UTSC (formerly "DECA")  is a student-led club, built to improve career centric skills amongst undergraduates. Join us. Emerge a leader.</p>
             </div>
-            <div>
+            <div className='md:hidden lg:block'>
               <Torus/>
             </div>
           </div>

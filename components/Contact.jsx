@@ -39,7 +39,7 @@ const Contact = () => {
         <div className="mx-16 p-20 rounded-md">
                 <div className="max-w-6xl mx-auto sm:px-6 lg:px-8">
                     <div className=" overflow-hidden">
-                        <div className="grid grid-cols-1 md:grid-cols-2">
+                        <div className="grid grid-cols-1 md:flex md:flex-wrap">
                             <div className="p-6 mr-2 bg-gray-100 sm:rounded-lg text-black">
                                 <h1 className="text-blue-600 text-3xl sm:text-5xl font-semibold tracking-tight">
                                     Get in touch with us!

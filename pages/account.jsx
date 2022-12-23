@@ -87,10 +87,10 @@ const account = ({events, sessions}) => {
         });
    }
 
-   function passwordChangeHandler(){
+   async function passwordChangeHandler(){
     sendPasswordResetEmail(auth, email)
     .then(() => {
-      alert("Password reset email has been sent. If you can't find it, check your spam!")
+      alert("Password reset email has been sent. Check your spam too!")
     })
     .catch((error) => {
       const errorCode = error.code;
