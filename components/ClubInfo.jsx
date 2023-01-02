@@ -60,7 +60,7 @@ const [pic2, setPic2] = useState('')
 
 
     return(<div className='bg-blue-700'>
-        <div className='px-16 lg:py-10 flex flex-wrap md:grid md:place-content-center gap-10'>
+        <div className='px-16 lg:py-10 flex flex-wrap gap-10'>
             <motion.div whileHover={{scale:1.05}}
                              className="w-150 h-72 md:mt-10 lg:mt-24 lg:ml-4 bg-white p-10 bg-white rounded-lg drop-shadow-xl flex ">
                              <div className="m-auto">
@@ -76,7 +76,7 @@ const [pic2, setPic2] = useState('')
             </motion.img>
     
         </div>
-        <div className='px-16 lg:-mt-48 flex flex-wrap md:grid md:place-content-center gap-10'>
+        <div className='px-16 lg:-mt-48 flex flex-wrap gap-10'>
             <motion.img src={pic1} whileHover={{scale:1.05}}
                              className="mt-10 h-120 lg:ml-4 bg-white bg-white rounded-lg drop-shadow-xl md:mx-auto">
             </motion.img>
